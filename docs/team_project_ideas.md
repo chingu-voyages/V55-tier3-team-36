@@ -10,7 +10,7 @@ sentences.
 Each team member should Place an 'X' under their name to vote for the ideas 
 you like the best.
 
-| Project Idea | Description | Brittany | Maya | Alina | teammate name | teammate name | teammate name |
+| Project Idea | Description | Brittany | Maya | Alina | Lindsay | teammate name | teammate name |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | First idea | Description | | | | | | |
 | Second idea | Description | | | | | | |
