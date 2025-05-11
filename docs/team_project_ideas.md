@@ -12,7 +12,7 @@ you like the best.
 
 | Project Idea | Description | Brittany | Maya | Alina | Lindsay | teammate name | teammate name |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| First idea | Description | | | | | | |
+| First idea | Description | | Habit Tracker| | | | |
 | Second idea | Description | | | | | | |
 | ... | Description | | | | | | |
 | Last idea | Description | | | | | | |
