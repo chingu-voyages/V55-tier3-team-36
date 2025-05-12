@@ -12,7 +12,7 @@ you like the best.
 
 | Project Idea | Description | Brittany | Maya | Alina | Lindsay | teammate name | teammate name |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| First idea | Description | | Habit Tracker| Personal Assistant | Travel Planner  | | |
-| Second idea | Description | | | Yoga Partner Matcher | Little Library Finder | | |
+| First idea | Description | Pet Friendly Travel Planner| Habit Tracker| Personal Assistant | Travel Planner  | | |
+| Second idea | Description | Being able to share travel plans with friends and family| | Yoga Partner Matcher | Little Library Finder | | |
 | ... | Description | | | | | | |
 | Last idea | Description | | | | | | |
