@@ -12,10 +12,10 @@ you like the best.
 
 | Project Idea | Description | Brittany | Maya | Alina | Lindsay | Rebecca | teammate name |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Habit Tracker | Track habits with daily streaks, join or create accountability groups like "Early Risers" or "Workout Crew | | X| X |   | | |
+| Habit Tracker | Track habits with daily streaks, join or create accountability groups like "Early Risers" or "Workout Crew | | X| X |   | X | |
 | Personal Assistant | | | | | | | | 
 | Yoga Partner Matcher | | | | | | | |
 | Travel Planner | Being able to share travel plans with friends and family | | X|  |  | | |
-| Pet Travel | An app for pet owners who love to travel. Make travel easy with suggestions/recommendations for a pet-friendly trip.| | | X | |x| |
-| My Little Library | Keep track of your books in your own pocket library. | | | | |x| |
+| Pet Travel | An app for pet owners who love to travel. Make travel easy with suggestions/recommendations for a pet-friendly trip.| | | X | | | |
+| My Little Library | Keep track of your books in your own pocket library. | | | | |X| |
 
