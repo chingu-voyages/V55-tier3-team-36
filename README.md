@@ -34,11 +34,14 @@ Everyone on your team should add their name along with a link to their GitHub
 your repo access and to practice PR'ing with your team *before* you start
 coding!
 
-- Brittany Thompson: [GitHub](https://github.com/bpb2008) / [LinkedIn](https://linkedin.com/in/brittanythompson08)
+
 - Teammate name #2: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
 
    ...
 - Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
+
+- Developers:
+  - Brittany Thompson: [GitHub](https://github.com/bpb2008) / [LinkedIn](https://linkedin.com/in/brittanythompson08)
 
 - Voyage Guide:
    - Veronika Kolesnikova: [GitHub](https://github.com/kolesnikova-dev) / [LinkedIn](https://linkedin.com/in/kolesnikova-dev/)
