@@ -14,5 +14,5 @@ you like the best.
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | First idea | Description | Pet Friendly Travel Planner| Habit Tracker| Personal Assistant | Travel Planner  | | |
 | Second idea | Description | Being able to share travel plans with friends and family| | Yoga Partner Matcher | Little Library Finder | | |
-| ... | Description | | | | | | |
-| Last idea | Description | | | | | | |
+| My Little Library | Keep track of your books in your own pocket library. | | | | | | |
+| | | | | | | |
