@@ -35,8 +35,8 @@ your repo access and to practice PR'ing with your team *before* you start
 coding!
 
 
-- Scrum Master/Product Owner: [GitHub](https://github.com/alina-can-code) / [LinkedIn](https://linkedin.com/in/alinamschenk
-- Alina Schenk
+- Scrum Master/Product Owner: [GitHub](https://github.com/alina-can-code) / [LinkedIn](https://linkedin.com/in/alinamschenk)
+   - Alina Schenk
    ...
 - Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
 
