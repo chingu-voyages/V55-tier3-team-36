@@ -16,6 +16,6 @@ you like the best.
 | Personal Assistant | | | | | | | | 
 | Yoga Partner Matcher | | | | | | | |
 | Travel Planner | Being able to share travel plans with friends and family | | X|  |  | | |
-| Pet Travel | An app for pet owners who love to travel. Make travel easy with suggestions/recommendations for a pet-friendly trip.| | | X | | | |
-| My Little Library | Keep track of your books in your own pocket library. | | | | |X| |
+| Pet Travel | An app for pet owners who love to travel. Make travel easy with suggestions/recommendations for a pet-friendly trip.| | | X | X | | |
+| My Little Library | Keep track of your books in your own pocket library. | | | | X |X| |
 
