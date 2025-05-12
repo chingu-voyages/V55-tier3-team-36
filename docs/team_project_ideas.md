@@ -15,7 +15,7 @@ you like the best.
 | Habit Tracker | Track habits with daily streaks, join or create accountability groups like "Early Risers" or "Workout Crew | | X|  |   | | |
 | Personal Assistant | | | | | | | | 
 | Yoga Partner Matcher | | | | | | | |
-| Travel Planner | Being able to share travel plans with friends and family | | X|  | Little Library Finder | | |
+| Travel Planner | Being able to share travel plans with friends and family | | X|  |  | | |
 | Pet Travel | An app for pet owners who love to travel. Make travel easy with suggestions/recommendations for a pet-friendly trip.| | | | |x| |
 | My Little Library | Keep track of your books in your own pocket library. | | | | |x| |
 
