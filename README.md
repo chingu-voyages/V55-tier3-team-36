@@ -37,7 +37,6 @@ coding!
 - Scrum Master/Product Owner: [GitHub](https://github.com/alina-can-code) / [LinkedIn](https://linkedin.com/in/alinamschenk)
   - Alina Schenk
     ...
-- Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
 
 - Developers:
   
