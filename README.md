@@ -47,3 +47,6 @@ coding!
 
 - Voyage Guide:
   - Veronika Kolesnikova: [GitHub](https://github.com/kolesnikova-dev) / [LinkedIn](https://linkedin.com/in/kolesnikova-dev/)
+
+- UI/UX Designer:
+  - Rebecca Lin: [Github](https://github.com/rebelin) / [LinkedIn](https://linkedin.com/in/rebecca-e-lin/)
