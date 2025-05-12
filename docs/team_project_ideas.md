@@ -10,9 +10,10 @@ sentences.
 Each team member should Place an 'X' under their name to vote for the ideas 
 you like the best.
 
-| Project Idea | Description | Brittany | Maya | Alina | Lindsay | teammate name | teammate name |
+| Project Idea | Description | Brittany | Maya | Alina | Lindsay | Rebecca | teammate name |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | First idea | Description | Pet Friendly Travel Planner| Habit Tracker| Personal Assistant | Travel Planner  | | |
 | Second idea | Description | Being able to share travel plans with friends and family| | Yoga Partner Matcher | Little Library Finder | | |
-| My Little Library | Keep track of your books in your own pocket library. | | | | | | |
-| | | | | | | |
+| Pet Travel | An app for pet owners who love to travel. Make travel easy with suggestions/recommendations for a pet-friendly trip.| | | | |x| |
+| My Little Library | Keep track of your books in your own pocket library. | | | | |x| |
+
