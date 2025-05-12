@@ -12,7 +12,8 @@ you like the best.
 
 | Project Idea | Description | Brittany | Maya | Alina | Lindsay | Rebecca | teammate name |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Habit Tracker | Description | | | Personal Assistant |   | | |
+| Habit Tracker | Track habits with daily streaks, join or create accountability groups like "Early Risers" or "Workout Crew | | |  |   | | |
+| Personal Assistant | | | | | | | | 
 | Travel Planner | Being able to share travel plans with friends and family | | | Yoga Partner Matcher | Little Library Finder | | |
 | Pet Travel | An app for pet owners who love to travel. Make travel easy with suggestions/recommendations for a pet-friendly trip.| | | | |x| |
 | My Little Library | Keep track of your books in your own pocket library. | | | | |x| |
