@@ -40,7 +40,9 @@ coding!
 - Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
 
 - Developers:
-
+  
+  - Maya Jairam: [GitHub](https://github.com/mayajairam) / [LinkedIn](https://www.linkedin.com/in/mayajairam/)
+    
   - Brittany Thompson: [GitHub](https://github.com/bpb2008) / [LinkedIn](https://linkedin.com/in/brittanythompson08)
 
   - Lindsay Allen: [GitHub](https://github.com/lkallen) / [LinkedIn](https://www.linkedin.com/in/lindsay-allen-54b46937/)
