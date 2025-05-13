@@ -24,7 +24,7 @@ you like the best.
 |   |	- ML Framework |TensorFlow | | | | | |
 |   |	- Visualization/Graphics package (if required, e.g. D3, Nivo, etc.) | | | | | | |
 | 4	| Where to host the app? | | | | | | |
-|   |	- Heroku (suitable for FE, BE, & Postgres) | | | | | | |
+|   |	- Heroku (suitable for FE, BE, & Postgres) |Yes | | | | | |
 |   |	- Netlify (suitable only for FE) | | | | | | |
 |   |	- Vercel (suitable only for FE) | | | | | | |
 |   |	- Mongo Atlas (suitable only for MongoDB) | | | | | | |
@@ -35,7 +35,7 @@ you like the best.
 |   |	- Paper & pencil | | | | | | |
 |   |	- Adobe XD | | | | | | |
 |   |	- Balsamiq | | | | | | |
-|   |	- Figma | | | | | | |
+|   |	- Figma | Yes| | | | | |
 | 7	| Who works in which part of the app? | | | | | | |
 |   | - BE (not applicable for Tier 1 teams) | | | | | | |
 |   |	- FE | | | | | | |
