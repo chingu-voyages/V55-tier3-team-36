@@ -35,19 +35,36 @@ your repo access and to practice PR'ing with your team _before_ you start
 coding!
 
 - Scrum Master/Product Owner: [GitHub](https://github.com/alina-can-code) / [LinkedIn](https://linkedin.com/in/alinamschenk)
+
   - Alina Schenk
     ...
 
 - Developers:
-  
+
   - Maya Jairam: [GitHub](https://github.com/mayajairam) / [LinkedIn](https://www.linkedin.com/in/mayajairam/)
-    
   - Brittany Thompson: [GitHub](https://github.com/bpb2008) / [LinkedIn](https://linkedin.com/in/brittanythompson08)
 
   - Lindsay Allen: [GitHub](https://github.com/lkallen) / [LinkedIn](https://www.linkedin.com/in/lindsay-allen-54b46937/)
 
 - Voyage Guide:
+
   - Veronika Kolesnikova: [GitHub](https://github.com/kolesnikova-dev) / [LinkedIn](https://linkedin.com/in/kolesnikova-dev/)
 
 - UI/UX Designer:
   - Rebecca Lin: [Github](https://github.com/rebelin) / [LinkedIn](https://linkedin.com/in/rebecca-e-lin/)
+
+## Tech Stack
+
+This project is built using Next.js, React, Node, Express, and PostgreSQL.
+
+## Installation
+
+1. Clone the repo: `git clone https://github.com/chingu-voyages/V55-tier3-team-36.git`.
+
+2. Go to the source folder: `cd V55-tier3-team-36`.
+
+3. Install dependencies using `npm install`.
+
+4. Run the project locally: `npm run dev` and visit `http://localhost:3000`.
+
+5. More instructions TBD.
