@@ -1,4 +1,4 @@
-### Habit Tracker (Name TBD)
+# Habit Tracker (Name TBD)
 
 (Add info about our concept here! Maybe Alina can take care of this?)
 
@@ -45,7 +45,8 @@ NEXTAUTH_SECRET=<run `npx auth secret` in your terminal to generate this for you
 ```
 
 To generate (or, for our team, get our existing) `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`:
--Sign into [Google Cloud Console](https://console.cloud.google.com). (For our team, please use our team login that Lindsay created.)
--Create a project (or for our team, select our project)
--Search for OAuth consent and fill out the required fields, App name, support email, and developer contact email (our team can skip this step, the stuff is already generated). For `Authorized redirect URIs` use `http://localhost:3000/api/auth/callback/google`.
--This should generate client_id and client_secret.
+
+- Sign into [Google Cloud Console](https://console.cloud.google.com). (For our team, please use our team login that Lindsay created.)
+- Create a project (or for our team, select our project)
+- Search for OAuth consent and fill out the required fields, App name, support email, and developer contact email (our team can skip this step, the stuff is already generated). For `Authorized redirect URIs` use `http://localhost:3000/api/auth/callback/google`.
+- This should generate client_id and client_secret.
