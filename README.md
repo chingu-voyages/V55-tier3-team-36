@@ -6,7 +6,7 @@
 
 - Scrum Master/Product Owner:
   
-  - Alina Schenk[GitHub](https://github.com/alina-can-code) / [LinkedIn](https://linkedin.com/in/alinamschenk)
+  - Alina Schenk: [GitHub](https://github.com/alina-can-code) / [LinkedIn](https://linkedin.com/in/alinamschenk)
 
 - Developers:
 
