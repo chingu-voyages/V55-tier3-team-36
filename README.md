@@ -1,43 +1,12 @@
-# voyage-tasks
+### Habit Tracker (Name TBD)
 
-Your project's `readme` is as important to success as your code. For
-this reason you should put as much care into its creation and maintenance
-as you would any other component of the application.
-
-If you are unsure of what should go into the `readme` let this article,
-written by an experienced Chingu, be your starting point -
-[Keys to a well written README](https://tinyurl.com/yk3wubft).
-
-And before we go there's "one more thing"! Once you decide what to include
-in your `readme` feel free to replace the text we've provided here.
-
-> Own it & Make it your Own!
-
-## Team Documents
-
-You may find these helpful as you work together to organize your project.
-
-- [Team Project Ideas](./docs/team_project_ideas.md)
-- [Team Decision Log](./docs/team_decision_log.md)
-
-Meeting Agenda templates (located in the `/docs` directory in this repo):
-
-- Meeting - Voyage Kickoff --> ./docs/meeting-voyage_kickoff.docx
-- Meeting - App Vision & Feature Planning --> ./docs/meeting-vision_and_feature_planning.docx
-- Meeting - Sprint Retrospective, Review, and Planning --> ./docs/meeting-sprint_retrospective_review_and_planning.docx
-- Meeting - Sprint Open Topic Session --> ./docs/meeting-sprint_open_topic_session.docx
+(Add info about our concept here! Maybe Alina can take care of this?)
 
 ## Our Team
 
-Everyone on your team should add their name along with a link to their GitHub
-& optionally their LinkedIn profiles below. Do this in Sprint #1 to validate
-your repo access and to practice PR'ing with your team _before_ you start
-coding!
+- Scrum Master/Product Owner:
 
-- Scrum Master/Product Owner: [GitHub](https://github.com/alina-can-code) / [LinkedIn](https://linkedin.com/in/alinamschenk)
-
-  - Alina Schenk
-    ...
+- Alina Schenk[GitHub](https://github.com/alina-can-code) / [LinkedIn](https://linkedin.com/in/alinamschenk)
 
 - Developers:
 
@@ -55,7 +24,7 @@ coding!
 
 ## Tech Stack
 
-This project is built using Next.js, React, Node, Express, and PostgreSQL.
+This project is built using Next.js, React, NextAuth.js, and PostgreSQL.
 
 ## Installation
 
@@ -67,4 +36,16 @@ This project is built using Next.js, React, Node, Express, and PostgreSQL.
 
 4. Run the project locally: `npm run dev` and visit `http://localhost:3000`.
 
-5. More instructions TBD.
+5. Configure NextAuth by adding the following to `.env.local`, replacing each > with your own information:
+
+```
+GOOGLE_CLIENT_ID=<your-google-client-id>
+GOOGLE_CLIENT_SECRET=<your-google-client-secret>
+NEXTAUTH_SECRET=<run `npx auth secret` in your terminal to generate this for your local environment>
+```
+
+To generate (or, for our team, get our existing) `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`:
+-Sign into [Google Cloud Console](https://console.cloud.google.com). (For our team, please use our team login that Lindsay created.)
+-Create a project (or for our team, select our project)
+-Search for OAuth consent and fill out the required fields, App name, support email, and developer contact email (our team can skip this step, the stuff is already generated). For `Authorized redirect URIs` use `http://localhost:3000/api/auth/callback/google`.
+-This should generate client_id and client_secret.
