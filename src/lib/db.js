@@ -9,4 +9,9 @@ const pool = new Pool({
   },
 });
 
+export async function getHabitLogs() {
+  const result = await pool.query('SELECT * FROM habit_logs ORDER BY date DESC');
+  return result.rows;
+}
+
 export default pool;
