@@ -1,1 +1,3 @@
-{}
+{
+  "/api/habit_logs/route": "app/api/habit_logs/route.js"
+}
