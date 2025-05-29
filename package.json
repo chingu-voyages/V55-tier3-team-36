@@ -1,5 +1,5 @@
 {
-  "name": "v55team36",
+  "name": "habittracker",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,19 +10,15 @@
   },
   "dependencies": {
     "next": "15.3.2",
-    "next-auth": "^4.24.11",
-    "pg": "^8.16.0",
+    "postcss": "^8.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4.1.7",
-    "autoprefixer": "^10.4.21",
+    "@tailwindcss/postcss": "^4.1.8",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^4.1.7",
-    "tailwindcss-cli": "^0.1.2"
+    "tailwindcss": "^4.1.8"
   }
 }
