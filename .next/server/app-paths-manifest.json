@@ -1,3 +1,6 @@
 {
-  "/api/habit_logs/route": "app/api/habit_logs/route.js"
+  "/page": "app/page.js",
+  "/routes/dashboard/page": "app/routes/dashboard/page.js",
+  "/routes/dashboard/community/page": "app/routes/dashboard/community/page.js",
+  "/routes/dashboard/habits/page": "app/routes/dashboard/habits/page.js"
 }
