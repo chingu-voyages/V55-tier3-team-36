@@ -1,4 +1,11 @@
 "use server";
 
-// db interaction functions go here (GET, POST, ETC)
-// we can either put them all in this file, or split them up via additional files inside actions folder
+import { db } from "@/db/drizzle";
+
+import { habits, habitLogs } from "@/db/schema";
+
+// get all habit logs
+export async function getAllHabitLogs() {
+  const data = await db.select().from(habitLogs);
+  return data;
+}
