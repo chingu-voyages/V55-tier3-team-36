@@ -9,9 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth/drizzle-adapter": "^1.9.1",
     "@neondatabase/serverless": "^1.0.0",
     "dotenv": "^16.5.0",
-    "drizzle-orm": "^0.44.0",
+    "drizzle-orm": "^0.44.1",
     "next": "15.3.2",
     "next-auth": "^4.24.11",
     "postcss": "^8.5.3",

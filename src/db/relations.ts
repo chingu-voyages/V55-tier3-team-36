@@ -12,7 +12,7 @@ import {
 export const habitsRelations = relations(habits, ({ one, many }) => ({
   user: one(users, {
     fields: [habits.userId],
-    references: [users.userId],
+    references: [users.id],
   }),
   habitLogs: many(habitLogs),
   habitVisibilities: many(habitVisibility),
@@ -40,7 +40,7 @@ export const groupMembersRelations = relations(groupMembers, ({ one }) => ({
   }),
   user: one(users, {
     fields: [groupMembers.userId],
-    references: [users.userId],
+    references: [users.id],
   }),
 }));
 
@@ -48,7 +48,7 @@ export const groupsRelations = relations(groups, ({ one, many }) => ({
   groupMembers: many(groupMembers),
   user: one(users, {
     fields: [groups.createdBy],
-    references: [users.userId],
+    references: [users.id],
   }),
   habitVisibilities: many(habitVisibility),
 }));
@@ -62,7 +62,7 @@ export const habitVisibilityRelations = relations(
     }),
     user: one(users, {
       fields: [habitVisibility.sharedWithUserId],
-      references: [users.userId],
+      references: [users.id],
     }),
     group: one(groups, {
       fields: [habitVisibility.sharedWithGroupId],
