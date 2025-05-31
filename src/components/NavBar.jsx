@@ -2,47 +2,40 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import SignIn from "./SignIn";
 
 export default function NavBar() {
   const pathname = usePathname();
 
-  const linkClassName = "pb-4";
-  const activeLinkClassName = "pb-4 border-b font-bold";
+  const linkClassName = "block text-gray-700 hover:font-semibold"; // <-- make it a block-level element
+  const activeLinkClassName = "block font-bold text-blue-700";     // <-- same here
 
   return (
-    <div className="bg-blue-100 w-1/4 min-h-screen content-center">
-      <div className="flex flex-col gap-10 p-8">
+    <aside className="w-[220px] h-full bg-blue-100 px-6 py-10 rounded-r-3xl shadow-md flex flex-col justify-between">
+      <nav className="space-y-4">
         <Link
           href="/routes/dashboard"
-          className={`${
-            pathname === `/routes/dashboard`
-              ? activeLinkClassName
-              : linkClassName
-          }`}
+          className={pathname === `/routes/dashboard` ? activeLinkClassName : linkClassName}
         >
-          DASHBOARD
+          Dashboard
         </Link>
         <Link
           href="/routes/dashboard/habits"
-          className={`${
-            pathname === `/routes/dashboard/habits`
-              ? activeLinkClassName
-              : linkClassName
-          }`}
+          className={pathname === `/routes/dashboard/habits` ? activeLinkClassName : linkClassName}
         >
-          HABITS
+          Habits
         </Link>
         <Link
           href="/routes/dashboard/community"
-          className={`${
-            pathname === `/routes/dashboard/community`
-              ? activeLinkClassName
-              : linkClassName
-          }`}
+          className={pathname === `/routes/dashboard/community` ? activeLinkClassName : linkClassName}
         >
-          COMMUNITY
+          Community
         </Link>
+      </nav>
+
+      <div className="mt-10">
+        <SignIn />
       </div>
-    </div>
+    </aside>
   );
 }
