@@ -14,7 +14,7 @@ export const authOptions = {
     }),
   ],
   session: {
-    strategy: "jwt",
+    strategy: "database",
   },
   secret: process.env.NEXTAUTH_SECRET,
 
@@ -35,20 +35,6 @@ export const authOptions = {
       }
 
       return true;
-    },
-
-    async jwt({ token, user }) {
-      if (user?.id) {
-        token.id = user.id;
-      }
-      return token;
-    },
-
-    async session({ session, token }) {
-      if (token?.id) {
-        session.user.id = token.id;
-      }
-      return session;
     },
   },
 };
