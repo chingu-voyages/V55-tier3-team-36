@@ -52,9 +52,9 @@ export default function FormThree() {
     }
   }
 
-  // allow edits for behavior and when
+  // to do - allow edits for behavior and when
 
-  // write function for save to console log all routine
+  //  function for save to console log all routine
   function handleSave() {
     console.log(goalData);
     console.log(behaviorData);
@@ -114,7 +114,7 @@ export default function FormThree() {
             className="cursor-pointer bg-blue-500 rounded-lg w-full p-2 mt-10 text-white text-sm"
             onClick={handleRoutineSave}
           >
-            Update Routine
+            Save Updated Routine
           </button>
         )}
         {!isEditing && (
