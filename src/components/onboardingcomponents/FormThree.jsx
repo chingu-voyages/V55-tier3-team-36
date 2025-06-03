@@ -28,9 +28,8 @@ export default function FormThree() {
     getWhenData();
   }, []);
 
-  // SAVE FUNCTION SHOULD:
-  // UPDATE DATABASE, CLEAR SESSION STORAGE
-  // to do - add edit icons and ability
+  // add save function - SAVE FUNCTION SHOULD: update database, clear session storage
+  // need to add functionality to edit icons
 
   return (
     <div className=" w-3/4 ">
@@ -45,7 +44,9 @@ export default function FormThree() {
       <p className="mb-6 text-gray-500">{goalData}</p>
 
       <div className="flex gap-10">
-        <div className="w-3/4  block text-lg font-bold  text-gray-900 ">Behavior</div>
+        <div className="w-3/4  block text-lg font-bold  text-gray-900 ">
+          Behavior
+        </div>
         <div className="">
           <MdOutlineEdit />
         </div>
@@ -53,7 +54,9 @@ export default function FormThree() {
       <p className="mb-6 text-gray-500">{behaviorData}</p>
 
       <div className="flex  gap-10">
-        <div className="w-3/4  block text-lg font-bold  text-gray-900 ">When</div>
+        <div className="w-3/4  block text-lg font-bold  text-gray-900 ">
+          When
+        </div>
 
         <div className="">
           <MdOutlineEdit />
@@ -63,7 +66,7 @@ export default function FormThree() {
       <p className="mb-6 text-gray-500">{whenData}</p>
 
       <button
-        className=" bg-blue-500 rounded-lg w-full p-2 mt-10 text-white text-sm"
+        className="cursor-pointer bg-blue-500 rounded-lg w-full p-2 mt-10 text-white text-sm"
         // onClick={}
       >
         SAVE

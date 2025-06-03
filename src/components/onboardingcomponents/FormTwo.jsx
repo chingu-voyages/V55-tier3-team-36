@@ -84,7 +84,7 @@ export default function FormTwo() {
         </p>
 
         <button
-          className=" bg-blue-500 rounded-lg w-full p-2 mt-10 text-white text-sm"
+          className="cursor-pointer bg-blue-500 rounded-lg w-full p-2 mt-10 text-white text-sm"
           onClick={handleContinue}
         >
           CONTINUE
