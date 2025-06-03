@@ -25,6 +25,21 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/routes/dashboard/habits/page.js"
+    ],
+    "/routes/onboarding/step1/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/routes/onboarding/step1/page.js"
+    ],
+    "/routes/onboarding/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/routes/onboarding/layout.js"
+    ],
+    "/routes/onboarding/step2/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/routes/onboarding/step2/page.js"
     ]
   }
 }
