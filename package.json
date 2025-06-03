@@ -11,6 +11,7 @@
   "dependencies": {
     "@auth/drizzle-adapter": "^1.9.1",
     "@neondatabase/serverless": "^1.0.0",
+    "dayjs": "^1.11.13",
     "dotenv": "^16.5.0",
     "drizzle-orm": "^0.44.1",
     "next": "15.3.2",
