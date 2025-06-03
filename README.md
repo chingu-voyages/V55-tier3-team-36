@@ -25,7 +25,7 @@
 
 ## Tech Stack
 
-This project is built using Next.js, React, NextAuth.js, and PostgreSQL.
+This project is built using Next.js, React, NextAuth.js, PostgreSQL, Drizzle ORM, and Tailwind CSS.
 
 ## Installation
 
@@ -51,3 +51,14 @@ To generate (or, for our team, get our existing) `GOOGLE_CLIENT_ID` and `GOOGLE_
 - Create a project (or for our team, select our project)
 - Search for OAuth consent and fill out the required fields, App name, support email, and developer contact email (our team can skip this step, the stuff is already generated). For `Authorized redirect URIs` use `http://localhost:3000/api/auth/callback/google`.
 - This should generate client_id and client_secret.
+
+6. Configure Neon database and Drizzle ORM (https://orm.drizzle.team/):
+
+- Sign up and create a postgresql database at https://neon.com/
+- Add your database connection string to your `.env`:
+
+```
+DB_URL=<"my-connection-string">
+```
+
+- Directly apply the schema to your database by running `npx drizzle-kit push`
