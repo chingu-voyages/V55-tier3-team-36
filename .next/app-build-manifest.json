@@ -10,6 +10,21 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
+    ],
+    "/routes/dashboard/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/routes/dashboard/layout.js"
+    ],
+    "/routes/dashboard/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/routes/dashboard/page.js"
+    ],
+    "/routes/dashboard/habits/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/routes/dashboard/habits/page.js"
     ]
   }
 }
