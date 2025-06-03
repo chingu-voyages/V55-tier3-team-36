@@ -13,9 +13,9 @@ export default function StepOne() {
       <Tagline tagline={tagline} />
       <div className="flex">
         <Description title={title} description={description} />
-         <div className="w-1/2 flex flex-col bg-white  shadow-2xl rounded-xl p-6">
-             <FormOne />
-           </div>
+        <div className="w-1/2  flex flex-col bg-white  shadow-2xl rounded-xl p-6">
+          <FormOne />
+        </div>
       </div>
     </div>
   );

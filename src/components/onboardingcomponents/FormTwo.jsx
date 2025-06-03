@@ -1,8 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function FormTwo() {
+  const router = useRouter();
+
+  const [sessionGoal, setSessionGoal] = useState("");
+
+  function getSessionGoal() {
+    const goal = sessionStorage.getItem("goal");
+    setSessionGoal(goal);
+  }
+  useEffect(() => {
+    getSessionGoal();
+  }, []);
+
   const [behaviorData, setBehaviorData] = useState("");
   const [whenData, setWhenData] = useState("");
 
@@ -14,16 +27,21 @@ export default function FormTwo() {
     setWhenData(event.target.value);
   }
 
+  function setSessionBehaviorWhen() {
+    sessionStorage.setItem("behavior", behaviorData);
+    sessionStorage.setItem("when", whenData);
+  }
+
   function handleContinue(event) {
     event.preventDefault();
-    console.log(behaviorData);
-    console.log(whenData);
-    // update session storage
+    setSessionBehaviorWhen();
+    router.push("/routes/onboarding/step3");
   }
 
   return (
     <div>
-      <p className="mb-6 text-gray-500"> Goal: insert from last step here</p>
+      <div className="mb-6 text-gray-500">Goal: {sessionGoal}</div>
+
       <form>
         <label
           htmlFor="behavior"
