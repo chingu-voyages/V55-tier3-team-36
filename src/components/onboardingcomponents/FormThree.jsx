@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { MdOutlineEdit } from "react-icons/md";
+import ErrorMessage from "./ErrorMessage";
 
 export default function FormThree() {
   const [goalData, setGoalData] = useState("");
@@ -34,6 +35,32 @@ export default function FormThree() {
 
   const [isEditing, setIsEditing] = useState(false);
 
+  function handleGoalChange(event) {
+    setGoalData(event.target.value);
+  }
+
+  const [isError, setIsError] = useState(false);
+
+  function handleRoutineSave(event) {
+    event.preventDefault();
+    if (goalData === "") {
+      setIsError(true);
+    } else {
+      setIsError(false);
+      const goal = sessionStorage.setItem("goal", goalData);
+      setIsEditing(false);
+    }
+  }
+
+  // allow edits for behavior and when
+
+  // write function for save to console log all routine
+  function handleSave() {
+    console.log(goalData);
+    console.log(behaviorData);
+    console.log(whenData);
+  }
+
   return (
     <div className=" w-3/4 ">
       <div className="flex  gap-10">
@@ -53,8 +80,10 @@ export default function FormThree() {
           <input
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5  "
             value={goalData}
+            onChange={handleGoalChange}
           />
         )}
+        {isError && <ErrorMessage />}
       </div>
 
       <div className="flex gap-10">
@@ -79,12 +108,24 @@ export default function FormThree() {
 
       <p className="mb-6 text-gray-500">{whenData}</p>
 
-      <button
-        className="cursor-pointer bg-blue-500 rounded-lg w-full p-2 mt-10 text-white text-sm"
-        // onClick={}
-      >
-        SAVE
-      </button>
+      <div>
+        {isEditing && (
+          <button
+            className="cursor-pointer bg-blue-500 rounded-lg w-full p-2 mt-10 text-white text-sm"
+            onClick={handleRoutineSave}
+          >
+            Update Routine
+          </button>
+        )}
+        {!isEditing && (
+          <button
+            className="cursor-pointer bg-blue-500 rounded-lg w-full p-2 mt-10 text-white text-sm"
+            onClick={handleSave}
+          >
+            SAVE
+          </button>
+        )}
+      </div>
     </div>
   );
 }
