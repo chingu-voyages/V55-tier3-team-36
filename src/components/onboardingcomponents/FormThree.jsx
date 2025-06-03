@@ -1,6 +1,6 @@
 "use client";
-
 import { useEffect, useState } from "react";
+import { MdOutlineEdit } from "react-icons/md";
 
 export default function FormThree() {
   const [goalData, setGoalData] = useState("");
@@ -33,16 +33,33 @@ export default function FormThree() {
   // to do - add edit icons and ability
 
   return (
-    <div>
-      <div className="block text-lg font-bold  text-gray-900 ">
-        Name of implementation intention
+    <div className=" w-3/4 ">
+      <div className="flex  gap-10">
+        <div className="w-3/4 block text-lg font-bold  text-gray-900 ">
+          Name of implementation intention
+        </div>
+        <div className="">
+          <MdOutlineEdit />
+        </div>
       </div>
       <p className="mb-6 text-gray-500">{goalData}</p>
 
-      <div className="block text-lg font-bold  text-gray-900 ">Behavior</div>
+      <div className="flex gap-10">
+        <div className="w-3/4  block text-lg font-bold  text-gray-900 ">Behavior</div>
+        <div className="">
+          <MdOutlineEdit />
+        </div>
+      </div>
       <p className="mb-6 text-gray-500">{behaviorData}</p>
 
-      <div className="block text-lg font-bold  text-gray-900 ">When</div>
+      <div className="flex  gap-10">
+        <div className="w-3/4  block text-lg font-bold  text-gray-900 ">When</div>
+
+        <div className="">
+          <MdOutlineEdit />
+        </div>
+      </div>
+
       <p className="mb-6 text-gray-500">{whenData}</p>
 
       <button
