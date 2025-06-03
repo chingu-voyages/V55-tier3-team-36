@@ -1,4 +1,21 @@
+'use client'
+
+import { useState } from "react";
+
 export default function FormOne() {
+
+  const [goalData, setGoalData] = useState("")
+
+  function handleGoalChange(event) {
+    setGoalData(event.target.value)
+  }
+
+  function handleContinue(event) {
+    event.preventDefault()
+    console.log(goalData)
+    // will use to set session storage for goal
+  }
+
   return (
     <div>
       <form>
@@ -12,7 +29,7 @@ export default function FormOne() {
         <input
           type="text"
           name="goal"
-          //   onChange={handleGoalChange}
+            onChange={handleGoalChange}
           aria-describedby="helper-text-explanation"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5  "
           placeholder="Enter a goal you want to achieve"
@@ -24,7 +41,7 @@ export default function FormOne() {
 
         <button
           className=" bg-blue-500 rounded-lg w-full p-2 mt-10 text-white text-sm"
-          //    onClick={handleContinue}
+             onClick={handleContinue}
         >
           CONTINUE
         </button>
