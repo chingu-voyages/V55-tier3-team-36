@@ -30,6 +30,7 @@ export default function FormThree() {
 
   // add save function - SAVE FUNCTION SHOULD: update database, clear session storage
   // need to add functionality to edit icons
+  // validate on this page only?
 
   return (
     <div className=" w-3/4 ">

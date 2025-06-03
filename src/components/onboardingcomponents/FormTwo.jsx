@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import ErrorMessage from "./ErrorMessage";
 
 export default function FormTwo() {
   const router = useRouter();
@@ -59,9 +60,15 @@ export default function FormTwo() {
           placeholder="Enter a behavior you wish to implement"
         />
 
-        <p id="helper-text-explanation" className="mt-2 text-sm text-gray-500">
-          e.g., "I will drink a glass of water"
-        </p>
+        <div className="flex  mt-2 text-sm justify-between">
+          <p
+            id="helper-text-explanation"
+            className="mt-2 text-sm text-gray-500"
+          >
+            e.g., "I will drink a glass of water"
+          </p>
+          {/* {isErrorBehavior && <ErrorMessage />} */}
+        </div>
 
         <label
           htmlFor="when"
@@ -79,9 +86,15 @@ export default function FormTwo() {
           placeholder="Enter a time or scenario"
         />
 
-        <p id="helper-text-explanation" className="mt-2 text-sm text-gray-500">
-          e.g., "after I wake up in the morning"
-        </p>
+        <div className="flex  mt-2 text-sm justify-between">
+          <p
+            id="helper-text-explanation"
+            className="mt-2 text-sm text-gray-500"
+          >
+            e.g., "after I wake up in the morning"
+          </p>
+          {/* {isErrorWhen && <ErrorMessage />} */}
+        </div>
 
         <button
           className="cursor-pointer bg-blue-500 rounded-lg w-full p-2 mt-10 text-white text-sm"

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import ErrorMessage from "./ErrorMessage";
 
 export default function FormOne() {
   const router = useRouter();
@@ -16,10 +17,17 @@ export default function FormOne() {
     sessionStorage.setItem("goal", goalData);
   }
 
+  const [isError, setIsError] = useState(false);
+
   function handleContinue(event) {
     event.preventDefault();
-    setSessionGoal();
-    router.push("/routes/onboarding/step2");
+    if (goalData === "") {
+      setIsError(true);
+    } else {
+      setIsError(false);
+      setSessionGoal();
+      router.push("/routes/onboarding/step2");
+    }
   }
 
   return (
@@ -41,9 +49,12 @@ export default function FormOne() {
           placeholder="Enter a goal you want to achieve"
         />
 
-        <p id="helper-text-explanation" className="mt-2 text-sm text-gray-500">
-          e.g., "Drink more water"
-        </p>
+        <div className="flex  mt-2 text-sm justify-between">
+          <p id="helper-text-explanation" className=" text-gray-500">
+            e.g., "Drink more water"
+          </p>
+          {isError && <ErrorMessage />}
+        </div>
 
         <button
           className="cursor-pointer bg-blue-500 rounded-lg w-full p-2 mt-10 text-white text-sm"

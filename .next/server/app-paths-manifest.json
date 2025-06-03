@@ -1,6 +1,7 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
   "/page": "app/page.js",
-  "/routes/onboarding/step3/page": "app/routes/onboarding/step3/page.js",
   "/routes/onboarding/step1/page": "app/routes/onboarding/step1/page.js",
-  "/routes/onboarding/step2/page": "app/routes/onboarding/step2/page.js"
+  "/routes/onboarding/step2/page": "app/routes/onboarding/step2/page.js",
+  "/routes/onboarding/step3/page": "app/routes/onboarding/step3/page.js"
 }
