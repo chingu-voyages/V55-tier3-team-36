@@ -32,6 +32,8 @@ export default function FormThree() {
   // need to add functionality to edit icons
   // validate on this page only?
 
+  const [isEditing, setIsEditing] = useState(false);
+
   return (
     <div className=" w-3/4 ">
       <div className="flex  gap-10">
@@ -39,10 +41,21 @@ export default function FormThree() {
           Name of implementation intention
         </div>
         <div className="">
-          <MdOutlineEdit />
+          <button className="cursor-pointer" onClick={() => setIsEditing(true)}>
+            <MdOutlineEdit />
+          </button>
         </div>
       </div>
-      <p className="mb-6 text-gray-500">{goalData}</p>
+
+      <div className="mb-6">
+        {!isEditing && <p className=" text-gray-500">{goalData}</p>}
+        {isEditing && (
+          <input
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5  "
+            value={goalData}
+          />
+        )}
+      </div>
 
       <div className="flex gap-10">
         <div className="w-3/4  block text-lg font-bold  text-gray-900 ">
