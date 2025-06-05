@@ -3,7 +3,7 @@ import { sql } from "drizzle-orm"
 
 
 
-export const users = pgTable("users", {
+export const user = pgTable("user", {
 	id: serial("id").primaryKey(), 
 	email: text("email").notNull(), 
 	name: text("name").notNull(), 
@@ -16,23 +16,16 @@ export const users = pgTable("users", {
 
 export const session = pgTable("session", {
 	sessionToken: text("token").notNull().primaryKey(), 
-	userId: integer("user_id").notNull().references(() => users.id, { onDelete: "cascade"}),
-	expiresAt: timestamp("expires_at").notNull(), 
+	userId: integer("user_id").notNull().references(() => user.id, { onDelete: "cascade"}),
+	expires: timestamp("expires").notNull(), 
 });
 
-export const accounts = pgTable("accounts", {
+export const account = pgTable("account", {
 	id: serial("id").primaryKey(), 
-	userId: integer("user_id").notNull(). references(() => users.id, { onDelete: "cascade" }),
+	userId: integer("user_id").notNull().references(() => user.id, { onDelete: "cascade" }),
 	type: text("type").notNull(), //OAuth 
 	provider: text("provider").notNull(), //Google 
 	providerAccountId: text("provider_account_id").notNull(),
-	access_token: text("access_token"), 
-	refresh_token: text("refresh_token"), 
-	expires_at: timestamp("expires_at"),
-	token_type: text("token_type"), 
-	scope: text("scope"), 
-	id_token: text("id_token"),
-	session_state: text("session_state"),
 	}, (table) => [
 		unique("accounts_provider_provider_account_id_key").on(table.provider, table.providerAccountId),
 	]); 
@@ -50,7 +43,7 @@ export const habits = pgTable("habits", {
 }, (table) => [
 	foreignKey({
 			columns: [table.userId],
-			foreignColumns: [users.id],
+			foreignColumns: [user.id],
 			name: "habits_user_id_fkey"
 		}).onDelete("cascade"),
 	check("habits_visibility_check", sql`(visibility)::text = ANY ((ARRAY['public'::character varying, 'private'::character varying, 'friends'::character varying, 'groups'::character varying])::text[])`),
@@ -85,7 +78,7 @@ export const groupMembers = pgTable("group_members", {
 		}).onDelete("cascade"),
 	foreignKey({
 			columns: [table.userId],
-			foreignColumns: [users.id],
+			foreignColumns: [user.id],
 			name: "group_members_user_id_fkey"
 		}).onDelete("cascade"),
 	unique("group_members_group_id_user_id_key").on(table.groupId, table.userId),
@@ -101,7 +94,7 @@ export const groups = pgTable("groups", {
 }, (table) => [
 	foreignKey({
 			columns: [table.createdBy],
-			foreignColumns: [users.id],
+			foreignColumns: [user.id],
 			name: "groups_created_by_fkey"
 		}).onDelete("cascade"),
 ]);
@@ -119,7 +112,7 @@ export const habitVisibility = pgTable("habit_visibility", {
 		}).onDelete("cascade"),
 	foreignKey({
 			columns: [table.sharedWithUserId],
-			foreignColumns: [users.id],
+			foreignColumns: [user.id],
 			name: "habit_visibility_shared_with_user_id_fkey"
 		}),
 	foreignKey({

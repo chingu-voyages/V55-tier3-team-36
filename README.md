@@ -1,4 +1,4 @@
-# Habit Tracker (Name TBD)
+# Habitude
 
 (Add info about our concept here! Maybe Alina can take care of this?)
 

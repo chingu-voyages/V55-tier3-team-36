@@ -1,6 +1,6 @@
 import { relations } from "drizzle-orm/relations";
 import {
-  users,
+  user,
   habits,
   habitLogs,
   groups,
@@ -10,16 +10,16 @@ import {
 } from "./schema";
 
 export const habitsRelations = relations(habits, ({ one, many }) => ({
-  user: one(users, {
+  user: one(user, {
     fields: [habits.userId],
-    references: [users.id],
+    references: [user.id],
   }),
   habitLogs: many(habitLogs),
   habitVisibilities: many(habitVisibility),
   habitStats: many(habitStats),
 }));
 
-export const usersRelations = relations(users, ({ many }) => ({
+export const usersRelations = relations(user, ({ many }) => ({
   habits: many(habits),
   groupMembers: many(groupMembers),
   groups: many(groups),
@@ -38,17 +38,17 @@ export const groupMembersRelations = relations(groupMembers, ({ one }) => ({
     fields: [groupMembers.groupId],
     references: [groups.id],
   }),
-  user: one(users, {
+  user: one(user, {
     fields: [groupMembers.userId],
-    references: [users.id],
+    references: [user.id],
   }),
 }));
 
 export const groupsRelations = relations(groups, ({ one, many }) => ({
   groupMembers: many(groupMembers),
-  user: one(users, {
+  user: one(user, {
     fields: [groups.createdBy],
-    references: [users.id],
+    references: [user.id],
   }),
   habitVisibilities: many(habitVisibility),
 }));
@@ -60,9 +60,9 @@ export const habitVisibilityRelations = relations(
       fields: [habitVisibility.habitId],
       references: [habits.habitId],
     }),
-    user: one(users, {
+    user: one(user, {
       fields: [habitVisibility.sharedWithUserId],
-      references: [users.id],
+      references: [user.id],
     }),
     group: one(groups, {
       fields: [habitVisibility.sharedWithGroupId],
