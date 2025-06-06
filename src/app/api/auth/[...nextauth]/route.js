@@ -1,5 +1,5 @@
-import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
+import NextAuth from 'next-auth';
+import GoogleProvider from 'next-auth/providers/google';
 
 export const authOptions = {
   providers: [
@@ -8,31 +8,74 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
-  session: {
-    strategy: "jwt",
+  pages: {
+    signIn: '/',
+    error: '/',
   },
   callbacks: {
-    async jwt({ token, user, account }) {
-      if (account && user) {
-        return {
-          ...token,
-          accessToken: account.access_token,
-          id: user.id,
-        };
+    async signIn({ user, account, profile }) {
+      try {
+        console.log('SignIn Callback - Start', {
+          user: { email: user?.email },
+          account: { provider: account?.provider },
+          profile: { email: profile?.email }
+        });
+        return true;
+      } catch (error) {
+        console.error('SignIn Callback - Error:', error);
+        return false;
       }
-      return token;
     },
     async session({ session, token }) {
-      session.user.id = token.id;
-      session.accessToken = token.accessToken;
-      return session;
+      try {
+        console.log('Session Callback - Start', {
+          session: { email: session?.user?.email },
+          token: { email: token?.email }
+        });
+
+        if (session?.user) {
+          session.user.id = token.sub;
+        }
+        return session;
+      } catch (error) {
+        console.error('Session Callback - Error:', error);
+        return session;
+      }
     },
+    async jwt({ token, user, account }) {
+      try {
+        console.log('JWT Callback - Start', {
+          token: { email: token?.email },
+          user: { email: user?.email },
+          account: { provider: account?.provider }
+        });
+
+        if (user) {
+          token.id = user.id;
+        }
+        return token;
+      } catch (error) {
+        console.error('JWT Callback - Error:', error);
+        return token;
+      }
+    }
   },
-  pages: {
-    signIn: "/",
-    error: "/",
+  session: {
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   debug: true,
+  events: {
+    async signIn(message) {
+      console.log('SignIn Event:', message);
+    },
+    async signOut(message) {
+      console.log('SignOut Event:', message);
+    },
+    async error(message) {
+      console.error('Auth Error Event:', message);
+    }
+  }
 };
 
 const handler = NextAuth(authOptions);

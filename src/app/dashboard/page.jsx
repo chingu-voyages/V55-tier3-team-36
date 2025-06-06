@@ -1,10 +1,13 @@
 'use client';
+import { useState } from 'react';
 import { useSession } from 'next-auth/react';
+import SessionDetails from '@/components/SessionDetails';
 import NavBar from '@/components/NavBar';
 import WeeklyProgress from '@/components/WeeklyProgess';
 import Calendar from '@/components/Calendar';
 
 export default function DashboardPage() {
+  const [showSessionDetails, setShowSessionDetails] = useState(false);
   const { data: session } = useSession();
 
   return (
@@ -12,23 +15,21 @@ export default function DashboardPage() {
       {/* Top Bar */}
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-semibold text-gray-800">
-          Welcome back, {session?.user?.name || 'there'}
+          Welcome back, {session?.user?.name || 'User'}!
         </h1>
-        <div className="flex gap-8 text-right text-blue-900 font-medium">
-          <div>
-            <p className="text-lg">28</p>
-            <p className="text-sm text-gray-500">Current Streak</p>
-          </div>
-          <div>
-            <p className="text-lg">28</p>
-            <p className="text-sm text-gray-500">Best Streak</p>
-          </div>
-          <div>
-            <p className="text-lg">75%</p>
-            <p className="text-sm text-gray-500">Completion Rate</p>
-          </div>
-        </div>
+        <button
+          onClick={() => setShowSessionDetails(!showSessionDetails)}
+          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+        >
+          {showSessionDetails ? 'Hide Session Details' : 'Show Session Details'}
+        </button>
       </div>
+
+      {showSessionDetails && (
+        <div className="mb-8">
+          <SessionDetails />
+        </div>
+      )}
 
       {/* Three Column Grid */}
       <div className="grid grid-cols-12 gap-6">
