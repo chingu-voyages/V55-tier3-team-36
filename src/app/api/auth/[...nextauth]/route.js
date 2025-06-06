@@ -1,10 +1,7 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { DrizzleAdapter } from "@auth/drizzle-adapter";
-import { db } from "@/db/drizzle";
 
 export const authOptions = {
-  adapter: DrizzleAdapter(db),
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -12,9 +9,30 @@ export const authOptions = {
     }),
   ],
   session: {
-    strategy: "database",
+    strategy: "jwt",
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    async jwt({ token, user, account }) {
+      if (account && user) {
+        return {
+          ...token,
+          accessToken: account.access_token,
+          id: user.id,
+        };
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      session.user.id = token.id;
+      session.accessToken = token.accessToken;
+      return session;
+    },
+  },
+  pages: {
+    signIn: "/",
+    error: "/",
+  },
+  debug: true,
 };
 
 const handler = NextAuth(authOptions);
