@@ -1,14 +1,17 @@
 import "./globals.css";
+import { NextAuthProvider } from "@/components/NextAuthProvider";
 
 export const metadata = {
-  title: "",
-  description: "",
+  title: "V55 App",
+  description: "V55 Application",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <NextAuthProvider>{children}</NextAuthProvider>
+      </body>
     </html>
   );
 }

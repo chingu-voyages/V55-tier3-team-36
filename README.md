@@ -4,7 +4,18 @@ Habitude
 
 Track habits. Build discipline. Achieve your goals.
 
-Habitude is a clean, goal-oriented habit tracker that helps users create routines tied to real outcomes. Built by an all-female team of developers and designers, the app focuses on clarity, simplicity, and motivation to support long-term success.
+Overview
+Habitude is a dynamic, full-stack habit-tracking app that turns everyday routines into measurable progress. Developed by an all-female team as part of the Chingu Voyage program, the app blends powerful backend logic with sleek front-end design to support long-term engagement through clean UI, goal-oriented prompts, and intuitive habit logs.
+
+What It Does:
+
+Helps users track daily habits tied to personal goals
+
+Visually displays user progress through graphs and dashboards
+
+Supports new user onboarding flows and personalized habit setup
+
+Offers easy-to-use habit logging forms
 
 ## Our Team
 
