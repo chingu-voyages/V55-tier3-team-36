@@ -1,13 +1,17 @@
-import NavBar from '@/components/NavBar';
-import WeeklyProgress from '@/components/WeeklyProgess';
-import Calendar from '@/components/Calendar';
+"use client";
+
+import NavBar from "@/components/NavBar";
+import WeeklyProgress from "@/components/WeeklyProgess";
+import Calendar from "@/components/Calendar";
 
 export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-gray-100 px-10 py-8">
       {/* Top Bar */}
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-semibold text-gray-800">Welcome back, Jane</h1>
+        <h1 className="text-3xl font-semibold text-gray-800">
+          Welcome back, Jane!
+        </h1>
         <div className="flex gap-8 text-right text-blue-900 font-medium">
           <div>
             <p className="text-lg">28</p>
@@ -55,7 +59,6 @@ export default function DashboardPage() {
           </div>
         </div>
       </div>
-
     </div>
   );
 }

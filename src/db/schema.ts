@@ -4,31 +4,15 @@ import { sql } from "drizzle-orm"
 
 
 export const user = pgTable("user", {
-	id: serial("id").primaryKey(), 
-	email: text("email").notNull(), 
-	name: text("name").notNull(), 
-	image: text("image"), 
-	emailVerified: timestamp("email_verified", { mode: "date" }),
-	createdAt: timestamp("created_at", { mode: "string" }).default(sql`CURRENT_TIMESTAMP`), 
+	id: serial().primaryKey().notNull(),
+	email: text().notNull(),
+	createdAt: timestamp("created_at", { mode: 'string' }).default(sql`CURRENT_TIMESTAMP`),
+	name: text().notNull(),
+	image: text(),
+	emailVerified: timestamp("email_verified", { mode: 'string' }),
 }, (table) => [
 	unique("users_email_key").on(table.email),
 ]);
-
-export const session = pgTable("session", {
-	sessionToken: text("token").notNull().primaryKey(), 
-	userId: integer("user_id").notNull().references(() => user.id, { onDelete: "cascade"}),
-	expires: timestamp("expires").notNull(), 
-});
-
-export const account = pgTable("account", {
-	id: serial("id").primaryKey(), 
-	userId: integer("user_id").notNull().references(() => user.id, { onDelete: "cascade" }),
-	type: text("type").notNull(), //OAuth 
-	provider: text("provider").notNull(), //Google 
-	providerAccountId: text("provider_account_id").notNull(),
-	}, (table) => [
-		unique("accounts_provider_provider_account_id_key").on(table.provider, table.providerAccountId),
-	]); 
 
 export const habits = pgTable("habits", {
 	habitId: serial("habit_id").primaryKey().notNull(),
@@ -111,16 +95,28 @@ export const habitVisibility = pgTable("habit_visibility", {
 			name: "habit_visibility_habit_id_fkey"
 		}).onDelete("cascade"),
 	foreignKey({
-			columns: [table.sharedWithUserId],
-			foreignColumns: [user.id],
-			name: "habit_visibility_shared_with_user_id_fkey"
-		}),
-	foreignKey({
 			columns: [table.sharedWithGroupId],
 			foreignColumns: [groups.id],
 			name: "habit_visibility_shared_with_group_id_fkey"
 		}),
+	foreignKey({
+			columns: [table.sharedWithUserId],
+			foreignColumns: [user.id],
+			name: "habit_visibility_shared_with_user_id_fkey"
+		}),
 	check("habit_visibility_check", sql`((shared_with_user_id IS NOT NULL) AND (shared_with_group_id IS NULL)) OR ((shared_with_user_id IS NULL) AND (shared_with_group_id IS NOT NULL))`),
+]);
+
+export const session = pgTable("session", {
+	token: text().primaryKey().notNull(),
+	userId: integer("user_id").notNull(),
+	expires: timestamp({ mode: 'string' }).notNull(),
+}, (table) => [
+	foreignKey({
+			columns: [table.userId],
+			foreignColumns: [user.id],
+			name: "session_user_id_user_id_fk"
+		}).onDelete("cascade"),
 ]);
 
 export const habitStats = pgTable("habit_stats", {
@@ -135,4 +131,19 @@ export const habitStats = pgTable("habit_stats", {
 			foreignColumns: [habits.habitId],
 			name: "habit_status_habit_id_fkey"
 		}).onDelete("cascade"),
+]);
+
+export const account = pgTable("account", {
+	id: serial().primaryKey().notNull(),
+	userId: integer("user_id").notNull(),
+	type: text().notNull(),
+	provider: text().notNull(),
+	providerAccountId: text("provider_account_id").notNull(),
+}, (table) => [
+	foreignKey({
+			columns: [table.userId],
+			foreignColumns: [user.id],
+			name: "account_user_id_user_id_fk"
+		}).onDelete("cascade"),
+	unique("accounts_provider_provider_account_id_key").on(table.provider, table.providerAccountId),
 ]);
