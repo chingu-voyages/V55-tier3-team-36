@@ -1,5 +1,8 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
+import { db } from "@/db/drizzle";
+import { user as userTable } from "@/db/schema";
+import { eq } from "drizzle-orm";
 
 export const authOptions = {
   providers: [
@@ -20,6 +23,21 @@ export const authOptions = {
           account: { provider: account?.provider },
           profile: { email: profile?.email }
         });
+        // Add user to database if not exists
+        if (user?.email) {
+          const existingUsers = await db.select().from(userTable).where(eq(userTable.email, user.email));
+          if (existingUsers.length === 0) {
+            await db.insert(userTable).values({
+              name: user.name,
+              email: user.email,
+              image: user.image,
+              emailVerified: user.emailVerified ? new Date(user.emailVerified) : null,
+            });
+            console.log('User added to database:', user.email);
+          } else {
+            console.log('User already exists in database:', user.email);
+          }
+        }
         return true;
       } catch (error) {
         console.error('SignIn Callback - Error:', error);
