@@ -1,6 +1,7 @@
 # Habitude
 
-(Habitude
+Habitude
+
 Track habits. Build discipline. Achieve your goals.
 
 Habitude is a clean, goal-oriented habit tracker that helps users create routines tied to real outcomes. Built by an all-female team of developers and designers, the app focuses on clarity, simplicity, and motivation to support long-term success.
