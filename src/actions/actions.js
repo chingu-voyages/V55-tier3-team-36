@@ -2,10 +2,10 @@
 
 import { db } from "@/db/drizzle";
 
-import { habits, habitLogs } from "@/db/schema";
+import { user } from "@/db/schema";
 
-// get all habit logs
-export async function getAllHabitLogs() {
-  const data = await db.select().from(habitLogs);
+// get all from table user
+export async function getAllTableUser() {
+  const data = await db.select().from(user);
   return data;
 }

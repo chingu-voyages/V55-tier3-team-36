@@ -1,8 +1,8 @@
-'use client';
-import { useSession } from 'next-auth/react';
-import NavBar from '@/components/NavBar';
-import WeeklyProgress from '@/components/WeeklyProgess';
-import Calendar from '@/components/Calendar';
+"use client";
+import { useSession } from "next-auth/react";
+import NavBar from "@/components/NavBar";
+import WeeklyProgress from "@/components/WeeklyProgess";
+import Calendar from "@/components/Calendar";
 
 export default function DashboardPage() {
   const { data: session } = useSession();
@@ -12,7 +12,8 @@ export default function DashboardPage() {
       {/* Top Bar */}
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-semibold text-gray-800">
-          Welcome back, {session?.user?.name || 'User'}!
+          Welcome back, {session?.user?.name || "User"}!
+          {/* onboarded: {isOnboarded ? "yes" : "no"} */}
         </h1>
       </div>
 
