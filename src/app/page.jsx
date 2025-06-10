@@ -1,7 +1,8 @@
 "use client";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { getAllTableUser } from "@/actions/actions";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -9,7 +10,28 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const errorParam = searchParams.get("error");
+  const { data: session, status } = useSession();
 
+  useEffect(() => {
+    const handleRedirect = async () => {
+      if (status === "authenticated" && session?.user?.email) {
+        try {
+          const users = await getAllTableUser();
+          const currentUser = users.find(user => user.email === session.user.email);
+          
+          if (!currentUser?.onboarded) {
+            window.location.href = '/routes/onboarding/step1';
+          } else {
+            window.location.href = '/routes/dashboard';
+          }
+        } catch (error) {
+          console.error("Error during redirect:", error);
+        }
+      }
+    };
+
+    handleRedirect();
+  }, [status, session]);
 
   const handleGoogleSignIn = async () => {
     try {
@@ -18,8 +40,6 @@ export default function LoginPage() {
       console.log("Starting Google sign in...");
 
       const result = await signIn("google", {
-        callbackUrl: "/routes",
-
         redirect: false,
       });
 
@@ -28,8 +48,6 @@ export default function LoginPage() {
       if (result?.error) {
         console.error("Sign in error:", result.error);
         setError(result.error);
-      } else if (result?.url) {
-        router.push(result.url);
       }
     } catch (error) {
       console.error("Error during sign in:", error);
