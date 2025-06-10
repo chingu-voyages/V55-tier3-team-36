@@ -1,13 +1,10 @@
 'use client';
-import { useState } from 'react';
 import { useSession } from 'next-auth/react';
-import SessionDetails from '@/components/SessionDetails';
 import NavBar from '@/components/NavBar';
 import WeeklyProgress from '@/components/WeeklyProgess';
 import Calendar from '@/components/Calendar';
 
 export default function DashboardPage() {
-  const [showSessionDetails, setShowSessionDetails] = useState(false);
   const { data: session } = useSession();
 
   return (
@@ -17,19 +14,7 @@ export default function DashboardPage() {
         <h1 className="text-3xl font-semibold text-gray-800">
           Welcome back, {session?.user?.name || 'User'}!
         </h1>
-        <button
-          onClick={() => setShowSessionDetails(!showSessionDetails)}
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-        >
-          {showSessionDetails ? 'Hide Session Details' : 'Show Session Details'}
-        </button>
       </div>
-
-      {showSessionDetails && (
-        <div className="mb-8">
-          <SessionDetails />
-        </div>
-      )}
 
       {/* Three Column Grid */}
       <div className="grid grid-cols-12 gap-6">
