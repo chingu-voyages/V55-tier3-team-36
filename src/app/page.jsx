@@ -3,14 +3,23 @@
 import NavBar from "@/components/NavBar";
 import WeeklyProgress from "@/components/WeeklyProgess";
 import Calendar from "@/components/Calendar";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    redirect("/signin");
+  }
+
   return (
     <div className="min-h-screen bg-gray-100 px-10 py-8">
       {/* Top Bar */}
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-semibold text-gray-800">
-          Welcome back, Jane!
+          Welcome back, {session.user.name}!
         </h1>
         <div className="flex gap-8 text-right text-blue-900 font-medium">
           <div>
