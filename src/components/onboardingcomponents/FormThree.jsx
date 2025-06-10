@@ -5,7 +5,7 @@ import { MdOutlineCancel } from "react-icons/md";
 import { MdCheckCircleOutline } from "react-icons/md";
 import ErrorMessage from "./ErrorMessage";
 
-export default function FormThree() {
+export default function FormThree({ userId }) {
   const [goalData, setGoalData] = useState("");
   const [behaviorData, setBehaviorData] = useState("");
   const [whenData, setWhenData] = useState("");
