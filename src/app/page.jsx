@@ -1,37 +1,38 @@
-'use client';
-import { signIn } from 'next-auth/react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+"use client";
+import { signIn } from "next-auth/react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 export default function LoginPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const errorParam = searchParams.get('error');
+  const errorParam = searchParams.get("error");
 
   const handleGoogleSignIn = async () => {
     try {
       setIsLoading(true);
       setError(null);
-      console.log('Starting Google sign in...');
-      
-      const result = await signIn('google', { 
-        callbackUrl: '/dashboard',
-        redirect: false 
+      console.log("Starting Google sign in...");
+
+      const result = await signIn("google", {
+        callbackUrl: "/routes",
+
+        redirect: false,
       });
-      
-      console.log('Sign in result:', result);
-      
+
+      console.log("Sign in result:", result);
+
       if (result?.error) {
-        console.error('Sign in error:', result.error);
+        console.error("Sign in error:", result.error);
         setError(result.error);
       } else if (result?.url) {
         router.push(result.url);
       }
     } catch (error) {
-      console.error('Error during sign in:', error);
-      setError(error.message || 'An unexpected error occurred');
+      console.error("Error during sign in:", error);
+      setError(error.message || "An unexpected error occurred");
     } finally {
       setIsLoading(false);
     }
@@ -40,12 +41,14 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h1 className="text-2xl font-bold text-center text-gray-800 mb-8">Welcome Back</h1>
-        
+        <h1 className="text-2xl font-bold text-center text-gray-800 mb-8">
+          Welcome Back
+        </h1>
+
         {(error || errorParam) && (
           <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
-            {error || errorParam === 'AccessDenied' 
-              ? 'Access denied. Please try signing in again.'
+            {error || errorParam === "AccessDenied"
+              ? "Access denied. Please try signing in again."
               : `Error: ${error || errorParam}`}
           </div>
         )}
@@ -78,16 +81,16 @@ export default function LoginPage() {
                 />
               </svg>
             )}
-            {isLoading ? 'Signing in...' : 'Sign in with Google'}
+            {isLoading ? "Signing in..." : "Sign in with Google"}
           </button>
         </div>
 
         <p className="mt-6 text-center text-sm text-gray-600">
-          By signing in, you agree to our{' '}
+          By signing in, you agree to our{" "}
           <a href="#" className="text-blue-600 hover:text-blue-500">
             Terms of Service
-          </a>{' '}
-          and{' '}
+          </a>{" "}
+          and{" "}
           <a href="#" className="text-blue-600 hover:text-blue-500">
             Privacy Policy
           </a>

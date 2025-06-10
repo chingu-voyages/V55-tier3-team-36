@@ -4,8 +4,9 @@ import { MdOutlineEdit } from "react-icons/md";
 import { MdOutlineCancel } from "react-icons/md";
 import { MdCheckCircleOutline } from "react-icons/md";
 import ErrorMessage from "./ErrorMessage";
+import { completeUserOnboarding } from "@/actions/actions";
 
-export default function FormThree() {
+export default function FormThree({ userId }) {
   const [goalData, setGoalData] = useState("");
   const [behaviorData, setBehaviorData] = useState("");
   const [whenData, setWhenData] = useState("");
@@ -115,8 +116,13 @@ export default function FormThree() {
     console.log(whenData);
   }
 
+  async function completeOnboarding() {
+   await completeUserOnboarding(userId);
+  }
+
   return (
     <div className=" w-3/4 ">
+      <button onClick={() => completeOnboarding()}>onboarding</button>
       {/* GOAL DATA */}
       <div className="flex  gap-10">
         <div className="w-3/4 block text-lg font-bold  text-gray-900 ">
