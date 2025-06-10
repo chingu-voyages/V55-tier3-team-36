@@ -1,8 +1,8 @@
-import { pgTable, unique, serial, text, timestamp, foreignKey, check, integer, varchar, date, boolean } from "drizzle-orm/pg-core"
+import { pgTable, unique, serial, text, timestamp, foreignKey, check, integer, varchar, date, boolean, uuid } from "drizzle-orm/pg-core"
 import { sql } from "drizzle-orm"
 
 export const user = pgTable("user", {
-	id: serial("id").primaryKey(), 
+	id: uuid("id").defaultRandom().primaryKey(), 
 	name: text("name"),
 	email: text("email").notNull(), 
 	emailVerified: timestamp("email_verified", { mode: "date" }),
@@ -14,13 +14,13 @@ export const user = pgTable("user", {
 
 export const session = pgTable("session", {
 	sessionToken: text("sessionToken").notNull().primaryKey(), 
-	userId: integer("userId").notNull().references(() => user.id, { onDelete: "cascade"}),
+	userId: uuid("userId").notNull().references(() => user.id, { onDelete: "cascade"}),
 	expires: timestamp("expires").notNull(), 
 });
 
 export const account = pgTable("account", {
 	id: serial("id").primaryKey(), 
-	userId: integer("userId").notNull().references(() => user.id, { onDelete: "cascade" }),
+	userId: uuid("userId").notNull().references(() => user.id, { onDelete: "cascade" }),
 	type: text("type").notNull(), //OAuth 
 	provider: text("provider").notNull(), //Google 
 	providerAccountId: text("providerAccountId").notNull(),
