@@ -17,7 +17,7 @@ export default function LoginPage() {
       console.log('Starting Google sign in...');
       
       const result = await signIn('google', { 
-        callbackUrl: '/dashboard',
+        callbackUrl: '/routes/dashboard',
         redirect: false 
       });
       
