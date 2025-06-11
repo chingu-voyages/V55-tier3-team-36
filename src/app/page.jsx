@@ -9,7 +9,7 @@ export default function LoginPage() {
   // const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const errorParam = searchParams.get("error");
+  // const errorParam = searchParams.get("error");
   const { data: session, status } = useSession();
 
   useEffect(() => {
