@@ -2,6 +2,7 @@
 import { db } from "@/db/drizzle";
 import { user, habits } from "@/db/schema";
 import { eq } from "drizzle-orm";
+import { redirect } from "next/navigation";
 
 // get all from table user
 export async function getAllTableUser() {
@@ -54,7 +55,8 @@ export async function updateOnboardingStatus(id) {
   await db
     .update(user)
     .set({
-      onboarded: true
+      onboarded: true,
     })
-    .where(eq(user.id, userId))
+    .where(eq(user.id, userId));
+  redirect("/routes/dashboard");
 }
