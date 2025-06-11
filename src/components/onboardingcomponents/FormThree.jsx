@@ -111,12 +111,6 @@ export default function FormThree({ userId }) {
   const disabledSaveClassName =
     "bg-gray-500 rounded-lg w-full p-2 mt-10 text-white text-sm";
 
-  function handleSave() {
-    console.log(goalData);
-    console.log(behaviorData);
-    console.log(whenData);
-  }
-
   const [formData, setFormData] = useState({
     goal: "",
     behavior: "",
@@ -132,41 +126,35 @@ export default function FormThree({ userId }) {
   }
 
   useEffect(() => {
-    updateFormData()
-  }, [goalData, behaviorData, whenData])
+    updateFormData();
+  }, [goalData, behaviorData, whenData]);
 
-  async function testAction() {
+  async function handleSave() {
     try {
       if (!userId) {
-        console.error('No user ID provided');
+        console.error("No user ID provided");
         return;
       }
 
       if (!formData.goal || !formData.behavior || !formData.when) {
-        console.error('Missing required fields:', formData);
+        console.error("Missing required fields:", formData);
         return;
       }
 
-      console.log('Sending data to server:', {
+      console.log("Sending data to server:", {
         userId,
-        formData
+        formData,
       });
 
       const data = await updateUserGoal(userId, formData);
-      console.log('Server response:', data);
+      console.log("Server response:", data);
     } catch (error) {
-      console.error('Error in testAction:', error);
+      console.error("Error in testAction:", error);
     }
   }
 
   return (
     <div className=" w-3/4 ">
-      
-
-      <button className="border" onClick={() => testAction()}>
-        test action
-      </button>
-
       {/* GOAL DATA */}
       <div className="flex  gap-10">
         <div className="w-3/4 block text-lg font-bold  text-gray-900 ">
