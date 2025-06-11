@@ -4,7 +4,9 @@ import { MdOutlineEdit } from "react-icons/md";
 import { MdOutlineCancel } from "react-icons/md";
 import { MdCheckCircleOutline } from "react-icons/md";
 import ErrorMessage from "./ErrorMessage";
-import { completeUserOnboarding } from "@/actions/actions";
+
+import { updateUserGoal } from "@/actions/actions";
+import { updateOnboardingStatus } from "@/actions/actions";
 
 export default function FormThree({ userId }) {
   const [goalData, setGoalData] = useState("");
@@ -108,21 +110,52 @@ export default function FormThree({ userId }) {
   const enabledSaveClassName =
     "cursor-pointer bg-blue-500 rounded-lg w-full p-2 mt-10 text-white text-sm";
   const disabledSaveClassName =
-    "bg-gray-500 rounded-lg w-full p-2 mt-10 text-white text-sm";
+    "bg-gray-400 rounded-lg w-full p-2 mt-10 text-white text-sm";
 
-  function handleSave() {
-    console.log(goalData);
-    console.log(behaviorData);
-    console.log(whenData);
+  const [formData, setFormData] = useState({
+    goal: "",
+    behavior: "",
+    when: "",
+  });
+
+  function updateFormData() {
+    setFormData({
+      goal: goalData,
+      behavior: behaviorData,
+      when: whenData,
+    });
   }
 
-  async function completeOnboarding() {
-   await completeUserOnboarding(userId);
+  useEffect(() => {
+    updateFormData();
+  }, [goalData, behaviorData, whenData]);
+
+  async function handleSave() {
+    try {
+      if (!userId) {
+        console.error("No user ID provided");
+        return;
+      }
+
+      if (!formData.goal || !formData.behavior || !formData.when) {
+        console.error("Missing required fields:", formData);
+        return;
+      }
+
+      console.log("Sending data to server:", {
+        userId,
+        formData,
+      });
+
+      const data = await updateUserGoal(userId, formData);
+      const onboarded = await updateOnboardingStatus(userId);
+    } catch (error) {
+      console.error("Error in testAction:", error);
+    }
   }
 
   return (
     <div className=" w-3/4 ">
-      <button onClick={() => completeOnboarding()}>onboarding</button>
       {/* GOAL DATA */}
       <div className="flex  gap-10">
         <div className="w-3/4 block text-lg font-bold  text-gray-900 ">
@@ -143,13 +176,13 @@ export default function FormThree({ userId }) {
                 className="cursor-pointer"
                 onClick={() => cancelGoalUpdate()}
               >
-                <MdOutlineCancel />
+                <MdOutlineCancel className="text-red-600" />
               </button>
               <button
                 className="cursor-pointer"
                 onClick={() => handleGoalSave(event)}
               >
-                <MdCheckCircleOutline />
+                <MdCheckCircleOutline className="text-blue-700" />
               </button>
             </div>
           )}
@@ -188,13 +221,13 @@ export default function FormThree({ userId }) {
                 className="cursor-pointer"
                 onClick={() => cancelBehaviorUpdate()}
               >
-                <MdOutlineCancel />
+                <MdOutlineCancel className="text-red-600" />
               </button>
               <button
                 className="cursor-pointer"
                 onClick={() => handleBehaviorSave(event)}
               >
-                <MdCheckCircleOutline />
+                <MdCheckCircleOutline className="text-blue-700" />
               </button>
             </div>
           )}
@@ -234,13 +267,13 @@ export default function FormThree({ userId }) {
                 className="cursor-pointer"
                 onClick={() => cancelWhenUpdate()}
               >
-                <MdOutlineCancel />
+                <MdOutlineCancel className="text-red-600" />
               </button>
               <button
                 className="cursor-pointer"
                 onClick={() => handleWhenSave(event)}
               >
-                <MdCheckCircleOutline />
+                <MdCheckCircleOutline className="text-blue-700" />
               </button>
             </div>
           )}

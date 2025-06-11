@@ -52,7 +52,11 @@ export const authOptions = {
         });
 
         if (session?.user) {
-          session.user.id = token.sub;
+          // Get the user from the database to ensure we have the correct UUID
+          const [dbUser] = await db.select().from(userTable).where(eq(userTable.email, session.user.email));
+          if (dbUser) {
+            session.user.id = dbUser.id;
+          }
         }
         return session;
       } catch (error) {
