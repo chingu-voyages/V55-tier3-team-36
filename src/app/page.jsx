@@ -6,7 +6,7 @@ import { getAllTableUser } from "@/actions/actions";
 
 export default function LoginPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const errorParam = searchParams.get("error");
@@ -18,12 +18,14 @@ export default function LoginPage() {
         setIsLoading(true);
         try {
           const users = await getAllTableUser();
-          const currentUser = users.find(user => user.email === session.user.email);
-          
+          const currentUser = users.find(
+            (user) => user.email === session.user.email
+          );
+
           if (!currentUser?.onboarded) {
-            window.location.href = '/routes/onboarding/step1';
+            window.location.href = "/routes/onboarding/step1";
           } else {
-            window.location.href = '/routes/dashboard';
+            window.location.href = "/routes/dashboard";
           }
         } catch (error) {
           console.error("Error during redirect:", error);
@@ -61,8 +63,12 @@ export default function LoginPage() {
       {isLoading ? (
         <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-500 mx-auto mb-4"></div>
-          <h2 className="text-xl font-semibold text-gray-800 mb-2">Preparing your experience...</h2>
-          <p className="text-gray-600">We're getting everything ready for you</p>
+          <h2 className="text-xl font-semibold text-gray-800 mb-2">
+            Preparing your experience...
+          </h2>
+          <p className="text-gray-600">
+            We're getting everything ready for you
+          </p>
         </div>
       ) : (
         <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
