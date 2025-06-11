@@ -6,13 +6,10 @@ import ErrorMessage from "./ErrorMessage";
 
 export default function FormOne() {
   const router = useRouter();
-
   const [goalData, setGoalData] = useState("");
-
   function handleGoalChange(event) {
     setGoalData(event.target.value);
   }
-
   function setSessionGoal() {
     sessionStorage.setItem("goal", goalData);
   }
@@ -21,13 +18,16 @@ export default function FormOne() {
 
   function handleContinue(event) {
     event.preventDefault();
-    if (goalData === "") {
-      setIsError(true);
-    } else {
-      setIsError(false);
-      setSessionGoal();
-      router.push("/routes/onboarding/step2");
-    }
+
+    console.log(goalData.length);
+
+    // if (goalData === "") {
+    //   setIsError(true);
+    // } else {
+    //   setIsError(false);
+    //   setSessionGoal();
+    //   router.push("/routes/onboarding/step2");
+    // }
   }
 
   return (
