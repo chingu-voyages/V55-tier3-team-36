@@ -76,11 +76,11 @@ export default function LoginPage() {
             Welcome Back
           </h1>
 
-          {(error || errorParam) && (
+          {/* {(error || errorParam) && (
             <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
               {error || errorParam === "AccessDenied"
                 ? "Access denied. Please try signing in again."
-                : `Error: ${error || errorParam}`}
+                : `Error: ${error || errorParam}`} */}
             </div>
           )}
 
