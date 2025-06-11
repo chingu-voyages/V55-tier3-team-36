@@ -6,6 +6,7 @@ import { MdCheckCircleOutline } from "react-icons/md";
 import ErrorMessage from "./ErrorMessage";
 
 import { updateUserGoal } from "@/actions/actions";
+import { updateOnboardingStatus } from "@/actions/actions";
 
 export default function FormThree({ userId }) {
   const [goalData, setGoalData] = useState("");
@@ -147,7 +148,7 @@ export default function FormThree({ userId }) {
       });
 
       const data = await updateUserGoal(userId, formData);
-      console.log("Server response:", data);
+      const onboarded = await updateOnboardingStatus(userId);
     } catch (error) {
       console.error("Error in testAction:", error);
     }
