@@ -176,13 +176,13 @@ export default function FormThree({ userId }) {
                 className="cursor-pointer"
                 onClick={() => cancelGoalUpdate()}
               >
-                <MdOutlineCancel />
+                <MdOutlineCancel className="text-red-600" />
               </button>
               <button
                 className="cursor-pointer"
                 onClick={() => handleGoalSave(event)}
               >
-                <MdCheckCircleOutline />
+                <MdCheckCircleOutline className="text-blue-700" />
               </button>
             </div>
           )}
@@ -221,13 +221,13 @@ export default function FormThree({ userId }) {
                 className="cursor-pointer"
                 onClick={() => cancelBehaviorUpdate()}
               >
-                <MdOutlineCancel />
+                <MdOutlineCancel className="text-red-600" />
               </button>
               <button
                 className="cursor-pointer"
                 onClick={() => handleBehaviorSave(event)}
               >
-                <MdCheckCircleOutline />
+                <MdCheckCircleOutline className="text-blue-700" />
               </button>
             </div>
           )}
@@ -267,13 +267,13 @@ export default function FormThree({ userId }) {
                 className="cursor-pointer"
                 onClick={() => cancelWhenUpdate()}
               >
-                <MdOutlineCancel />
+                <MdOutlineCancel className="text-red-600" />
               </button>
               <button
                 className="cursor-pointer"
                 onClick={() => handleWhenSave(event)}
               >
-                <MdCheckCircleOutline />
+                <MdCheckCircleOutline className="text-blue-700" />
               </button>
             </div>
           )}
