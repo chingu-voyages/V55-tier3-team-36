@@ -12,7 +12,16 @@ export async function getAllTableUser() {
 
 // update user onboarding
 // succesfully console logging id, now use to update table
-export async function completeUserOnboarding(userId) {
-  const id = userId;
-  console.log(id);
+// export async function completeUserOnboarding(userId) {
+//   const id = userId;
+//   console.log(id);
+// }
+
+
+// update user goal
+export async function updateUserGoal(id, data) {
+  const userId = id
+  const formData = data
+  
+  // await db.insert()
 }
