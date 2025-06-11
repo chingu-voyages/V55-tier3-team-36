@@ -10,12 +10,12 @@ export default function DashboardPage() {
   const { data: session } = useSession();
   const [habits, setHabits] = useState([]);
 
-  const userId = session?.user?.id;
-
   useEffect(() => {
     async function loadHabits() {
+      if (!session?.user?.id) return;
+
       try {
-        const data = await getHabits(userId);
+        const data = await getHabits(session.user.id);
         setHabits(data);
       } catch (error) {
         console.error("Failed to load habits:", error);
