@@ -60,3 +60,12 @@ export async function updateOnboardingStatus(id) {
     .where(eq(user.id, userId));
   redirect("/routes/dashboard");
 }
+
+// Get User Habits
+export async function getHabits(userId) {
+  const res = await fetch(`/api/habits?userId=${userId}`);
+  if (!res.ok) {
+    throw new Error("Failed to fetch habits");
+  }
+  return res.json();
+}
