@@ -9,13 +9,26 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-gray-100 px-10 py-8">
-      {/* Top Bar */}
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-semibold text-gray-800">
-          Welcome back, {session?.user?.name || "User"}!
-          {/* onboarded: {isOnboarded ? "yes" : "no"} */}
-        </h1>
-      </div>
+      {/* Header */}
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-semibold text-gray-800">
+            Welcome back, {session?.user?.name || "Jane"}!
+          </h1>
+          <div className="flex space-x-8 text-right text-blue-900 font-medium">
+            <div>
+              <p className="text-xl">24</p>
+              <p className="text-sm text-gray-500">Current Streak</p>
+            </div>
+            <div>
+              <p className="text-xl">24</p>
+              <p className="text-sm text-gray-500">Best Streak</p>
+            </div>
+            <div>
+              <p className="text-xl">75%</p>
+              <p className="text-sm text-gray-500">Completion Rate</p>
+            </div>
+          </div>
+        </div>
 
       {/* Three Column Grid */}
       <div className="grid grid-cols-12 gap-6">
