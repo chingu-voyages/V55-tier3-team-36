@@ -81,8 +81,9 @@ export default function LoginPage() {
               {error || errorParam === "AccessDenied"
                 ? "Access denied. Please try signing in again."
                 : `Error: ${error || errorParam}`} */}
-            </div>
-          )}
+          {/* </div> */}
+          {/* ) */}
+          {/* } */}
 
           <div className="space-y-4">
             <button
