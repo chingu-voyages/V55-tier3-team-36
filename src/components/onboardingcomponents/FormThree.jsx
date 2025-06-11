@@ -110,7 +110,7 @@ export default function FormThree({ userId }) {
   const enabledSaveClassName =
     "cursor-pointer bg-blue-500 rounded-lg w-full p-2 mt-10 text-white text-sm";
   const disabledSaveClassName =
-    "bg-gray-500 rounded-lg w-full p-2 mt-10 text-white text-sm";
+    "bg-gray-400 rounded-lg w-full p-2 mt-10 text-white text-sm";
 
   const [formData, setFormData] = useState({
     goal: "",
