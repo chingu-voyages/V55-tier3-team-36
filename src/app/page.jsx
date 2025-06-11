@@ -10,7 +10,9 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const errorParam = searchParams.get("error");
+
   const { data: session, status } = useSession();
+
   useEffect(() => {
     const handleRedirect = async () => {
       if (status === "authenticated" && session?.user?.email) {

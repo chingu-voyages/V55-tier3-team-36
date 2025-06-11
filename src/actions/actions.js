@@ -60,3 +60,14 @@ export async function updateOnboardingStatus(id) {
     .where(eq(user.id, userId));
   redirect("/routes/dashboard");
 }
+
+// Get User Habits
+export async function getHabits(userId) {
+  if (!userId) {
+    throw new Error("No userId provided");
+  }
+
+  const data = await db.select().from(habits).where(eq(habits.userId, userId));
+
+  return data;
+}
