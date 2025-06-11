@@ -131,15 +131,32 @@ export default function FormThree({ userId }) {
     });
   }
 
-
-
   useEffect(() => {
     updateFormData()
   }, [goalData, behaviorData, whenData])
 
   async function testAction() {
-    const data = await updateUserGoal(userId, formData);
-    console.log(data);
+    try {
+      if (!userId) {
+        console.error('No user ID provided');
+        return;
+      }
+
+      if (!formData.goal || !formData.behavior || !formData.when) {
+        console.error('Missing required fields:', formData);
+        return;
+      }
+
+      console.log('Sending data to server:', {
+        userId,
+        formData
+      });
+
+      const data = await updateUserGoal(userId, formData);
+      console.log('Server response:', data);
+    } catch (error) {
+      console.error('Error in testAction:', error);
+    }
   }
 
   return (
