@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ErrorMessage from "./ErrorMessage";
 
@@ -14,21 +14,30 @@ export default function FormOne() {
     sessionStorage.setItem("goal", goalData);
   }
 
-  const [isError, setIsError] = useState(false);
+  // const [isError, setIsError] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  function checkInput() {
+    if (goalData.length < 5) {
+      setIsDisabled(true);
+    } else {
+      setIsDisabled(false);
+    }
+  }
+
+  useEffect(() => {
+    checkInput();
+  }, [goalData]);
 
   function handleContinue(event) {
     event.preventDefault();
-
-    console.log(goalData.length);
-
-    // if (goalData === "") {
-    //   setIsError(true);
-    // } else {
-    //   setIsError(false);
-    //   setSessionGoal();
-    //   router.push("/routes/onboarding/step2");
-    // }
+    setSessionGoal();
+    router.push("/routes/onboarding/step2");
   }
+
+  const continueClassName = isDisabled
+    ? "bg-gray-400 rounded-lg w-full p-2 mt-10 text-white text-sm"
+    : "cursor-pointer bg-blue-500 rounded-lg w-full p-2 mt-10 text-white text-sm";
 
   return (
     <div className="w-3/4 ">
@@ -53,12 +62,14 @@ export default function FormOne() {
           <p id="helper-text-explanation" className=" text-gray-500">
             e.g., "Drink more water"
           </p>
-          {isError && <ErrorMessage />}
+
+          {/* {isError && <ErrorMessage />} */}
         </div>
 
         <button
-          className="cursor-pointer bg-blue-500 rounded-lg w-full p-2 mt-10 text-white text-sm"
+          className={continueClassName}
           onClick={handleContinue}
+          disabled={isDisabled}
         >
           CONTINUE
         </button>
