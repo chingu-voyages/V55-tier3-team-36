@@ -10,7 +10,7 @@ export default function DashboardPage() {
   const { data: session } = useSession();
   const [habits, setHabits] = useState([]);
 
-  const userId = session.user.id;
+  const userId = session?.user?.id;
 
   useEffect(() => {
     async function loadHabits() {
@@ -23,14 +23,14 @@ export default function DashboardPage() {
     }
 
     loadHabits();
-  }, []);
+  }, [session]);
 
   return (
     <div className="min-h-screen bg-gray-100 px-10 py-8">
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-semibold text-gray-800">
-          Welcome back, {session?.user?.name || "Jane"}!
+          Welcome Back, {session?.user?.name || "Jane"}!
         </h1>
         <div className="flex space-x-8 text-right text-blue-900 font-medium">
           <div>

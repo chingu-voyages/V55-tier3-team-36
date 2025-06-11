@@ -63,9 +63,11 @@ export async function updateOnboardingStatus(id) {
 
 // Get User Habits
 export async function getHabits(userId) {
-  const res = await fetch(`/api/habits?userId=${userId}`);
-  if (!res.ok) {
-    throw new Error("Failed to fetch habits");
+  if (!userId) {
+    throw new Error("No userId provided");
   }
-  return res.json();
+
+  const data = await db.select().from(habits).where(eq(habits.userId, userId));
+
+  return data;
 }
