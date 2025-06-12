@@ -5,6 +5,7 @@ import WeeklyProgress from "@/components/WeeklyProgess";
 import Calendar from "@/components/Calendar";
 import { getHabits } from "@/actions/actions";
 import { useEffect, useState } from "react";
+import StreakStats from "@/components/StreakStats";
 
 export default function DashboardPage() {
   const { data: session } = useSession();
@@ -32,20 +33,7 @@ export default function DashboardPage() {
         <h1 className="text-3xl font-semibold text-gray-800">
           Welcome Back, {session?.user?.name || "Jane"}!
         </h1>
-        <div className="flex space-x-8 text-right text-blue-900 font-medium">
-          <div>
-            <p className="text-xl">24</p>
-            <p className="text-sm text-gray-500">Current Streak</p>
-          </div>
-          <div>
-            <p className="text-xl">24</p>
-            <p className="text-sm text-gray-500">Best Streak</p>
-          </div>
-          <div>
-            <p className="text-xl">75%</p>
-            <p className="text-sm text-gray-500">Completion Rate</p>
-          </div>
-        </div>
+        <StreakStats />
       </div>
 
       {/* Three Column Grid */}
