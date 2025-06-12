@@ -5,6 +5,7 @@ import HabitCard from "@/components/HabitCard";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { getHabits } from "@/actions/actions";
+import StreakStats from "@/components/StreakStats";
 
 export default function HabitsPage() {
   const { data: session } = useSession();
@@ -34,20 +35,7 @@ export default function HabitsPage() {
           <h1 className="text-3xl font-semibold text-gray-800">
             Welcome back, {session?.user?.name || "Jane"}!
           </h1>
-          <div className="flex space-x-8 text-right text-blue-900 font-medium">
-            <div>
-              <p className="text-xl">24</p>
-              <p className="text-sm text-gray-500">Current Streak</p>
-            </div>
-            <div>
-              <p className="text-xl">24</p>
-              <p className="text-sm text-gray-500">Best Streak</p>
-            </div>
-            <div>
-              <p className="text-xl">75%</p>
-              <p className="text-sm text-gray-500">Completion Rate</p>
-            </div>
-          </div>
+          <StreakStats />
         </div>
 
         <div className="grid grid-cols-12 gap-4 items-start">
