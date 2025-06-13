@@ -16,14 +16,8 @@ export default function Calendar() {
         if (!response.ok) throw new Error("Failed to fetch calendar data");
 
         const { data } = await response.json();
-
-        const formatted = {};
-        data.forEach(({ date, completedHabits }) => {
-          const day = dayjs(date).date();
-          formatted[day] = completedHabits.length;
-        });
-
-        setHabitData(formatted);
+        console.log("Habit Data Response:", data);
+        setHabitData(data);
       } catch (error) {
         console.error("Error fetching calendar data:", error);
       }

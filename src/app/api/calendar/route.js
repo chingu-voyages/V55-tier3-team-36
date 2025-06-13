@@ -31,7 +31,7 @@ export async function GET(request) {
     .endOf("month")
     .toDate();
 
-  const results = await db
+  const rows = await db
     .select({
       date: dailyStats.date,
       completedHabits: dailyStats.completedHabits,
@@ -45,5 +45,11 @@ export async function GET(request) {
       )
     );
 
-  return NextResponse.json({ data: results });
+  const result = {};
+  for (let row of rows) {
+    const day = new Date(row.date).getDate();
+    result[day] = row.completedHabits;
+  }
+
+  return NextResponse.json({ data: result });
 }
