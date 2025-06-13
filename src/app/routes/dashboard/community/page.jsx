@@ -35,18 +35,18 @@ export default function CommunityPage() {
     <div className="flex min-h-screen bg-blue-50">
       <main className="flex-1 p-10 bg-gray-50">
         {/* Header */}
-        <div className="flex justify-between items-center mb-8">
+        {/* <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-semibold text-gray-800">
             Welcome back, {session?.user?.name || "Jane"}!
           </h1>
           <StreakStats />
-        </div>
+        </div> */}
 
         <div className="grid grid-cols-12 gap-4 items-start">
           {/* Sidebar Nav */}
-          <div className="col-span-3">
+          {/* <div className="col-span-3">
             <NavBar />
-          </div>
+          </div> */}
 
           {/* Main Content */}
           <div className="col-span-9 space-y-6">

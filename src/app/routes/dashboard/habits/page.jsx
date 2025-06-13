@@ -27,24 +27,22 @@ export default function HabitsPage() {
   }, [session]);
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="flex min-h-screen bg-gray-100 ">
       {/* Main Content */}
       <main className="flex-1 p-10">
         {/* Header */}
-        <div className="flex justify-between items-center mb-8">
+        {/* <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-semibold text-gray-800">
             Welcome back, {session?.user?.name || "Jane"}!
           </h1>
           <StreakStats />
-        </div>
+        </div> */}
 
         <div className="grid grid-cols-12 gap-4 items-start">
           {/* Sidebar */}
-          <div className="col-span-3">
-            <NavBar />
-          </div>
+        
           {/* Habit cards + Add button */}
-          <div className="col-span-9 space-y-6">
+          <div className="col-span-9 space-y-6  w-full">
             <div className="bg-white p-6 rounded-lg shadow mb-6">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-lg font-semibold text-gray-700">
