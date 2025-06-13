@@ -1,6 +1,6 @@
 "use server";
 import { db } from "@/db/drizzle";
-import { user, habits } from "@/db/schema";
+import { user, habits, habitLogs } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
 import { redirect } from "next/navigation";
 
@@ -105,4 +105,91 @@ export async function deleteHabit(habitId) {
   }
 }
 
+export async function logHabitCheck(userId, habitId, completed) {
+  const today = new Date().toISOString().split("T")[0];
+
+  const existing = await db
+    .select()
+    .from(habitLogs) // ✅ match your schema name
+    .where(
+      and(
+        eq(habitLogs.userId, userId),
+        eq(habitLogs.habitId, habitId),
+        eq(habitLogs.logDate, today)
+      )
+    );
+
+  if (existing.length > 0) {
+    await db
+      .update(habitLogs)
+      .set({ completed })
+      .where(eq(habitLogs.log_id, existing[0].log_id));
+  } else {
+    await db.insert(habitLogs).values({
+      user_id: userId,
+      habit_id: habitId,
+      log_date: today,
+      completed,
+    });
+  }
+
+  return { success: true };
+}
+
+
+export async function checkHabitLogForToday(userId, habitId) {
+  if (!userId || !habitId) throw new Error("Missing userId or habitId");
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const todayISO = today.toISOString().split("T")[0];
+
+  const log = await db
+    .select()
+    .from(habitLogs)
+    .where(
+      and(
+        eq(habitLogs.userId, userId),
+        eq(habitLogs.habitId, habitId),
+        eq(habitLogs.logDate, todayISO)
+      )
+    );
+
+  return log.length > 0 ? log[0] : null;
+}
+
+// Add a habit log entry
+export async function addHabitLog(habitId, userId, date) {
+  if (!habitId || !userId || !date) {
+    throw new Error("Missing parameters for addHabitLog");
+  }
+
+  await db.insert(habitLogs).values({
+    userId,
+    habitId,
+    logDate: date,
+    completed: true,
+  });
+
+  return { success: true };
+}
+
+
+
+// Delete a habit log entry
+export async function deleteHabitLog(habitId, userId, date) {
+  if (!habitId || !userId || !date) throw new Error("Missing parameters for deleteHabitLog");
+
+  await db
+    .delete(habitLogs)
+    .where(
+      and(
+        eq(habitLogs.habitId, habitId),
+        eq(habitLogs.userId, userId),
+        eq(habitLogs.logDate, date)
+      )
+    );
+
+  return { success: true };
+}
 

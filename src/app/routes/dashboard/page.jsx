@@ -1,4 +1,5 @@
 "use client";
+
 import { useSession } from "next-auth/react";
 import NavBar from "@/components/NavBar";
 import WeeklyProgress from "@/components/WeeklyProgess";
@@ -6,6 +7,7 @@ import Calendar from "@/components/Calendar";
 import { getHabits } from "@/actions/actions";
 import { useEffect, useState } from "react";
 import StreakStats from "@/components/StreakStats";
+import HabitCheckbox from "@/components/HabitCheckbox";
 
 export default function DashboardPage() {
   const { data: session } = useSession();
@@ -28,31 +30,33 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-gray-100 px-10 py-8">
-      {/* Header */}
-
-      {/* Three Column Grid */}
+      {/* Grid Layout */}
       <div className="grid grid-cols-12 gap-6">
-        {/* Column 1: NavBar */}
+        {/* Left Column: NavBar (optional) */}
+        {/* <div className="col-span-2"><NavBar /></div> */}
 
-        {/* Column 2: Overview and Weekly Progress */}
-        <div className="col-span-6 space-y-6 ">
+        {/* Middle Column: Overview and Weekly Progress */}
+        <div className="col-span-6 space-y-6">
+          {/* Overview Section */}
           <div className="bg-white p-6 rounded-lg shadow min-h-1/2">
-            <h2 className="font-semibold text-gray-700 mb-2">Overview</h2>
-            <ul>
+            <h2 className="font-semibold text-gray-700 mb-4">Overview</h2>
+            <ul className="space-y-2">
               {habits.map((habit) => (
-                <li key={habit.habitId}>{habit.habitName}</li>
+                <li key={habit.habitId}>
+                  <HabitCheckbox habit={habit} />
+                </li>
               ))}
             </ul>
           </div>
-          <div className="">
-            <WeeklyProgress />
-          </div>
+
+          {/* Weekly Progress */}
+          <WeeklyProgress />
         </div>
 
-        {/* Column 3: Calendar and Leaderboard */}
+        {/* Right Column: Calendar and Leaderboard */}
         <div className="col-span-4 space-y-6">
           <Calendar />
-          <div className="bg-white p-4 rounded-lg shadow  ">
+          <div className="bg-white p-4 rounded-lg shadow">
             <h2 className="text-md font-semibold mb-2">Overall Ranking</h2>
             <ol className="text-sm space-y-1">
               <li>🥇 Me — 28</li>
