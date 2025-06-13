@@ -12,7 +12,7 @@ export default function StepTwo() {
     <div>
       <Tagline tagline={tagline} />
       <div className="flex">
-        <Description title={title} description={description} />
+        <Description title={title} description={description} step="two" />
         <div className="w-1/2 flex flex-col bg-white  rounded-xl p-6">
           <FormTwo />
         </div>

@@ -20,7 +20,7 @@ export default function StepThree() {
       <Tagline tagline={tagline} />
 
       <div className="flex ">
-        <Description title={title} description={description} />
+        <Description title={title} description={description} step="three" />
         <div className="w-1/2  flex flex-col bg-white  rounded-xl p-6">
           <FormThree userId={userId} />
         </div>
