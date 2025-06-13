@@ -2,8 +2,8 @@ import "./globals.css";
 import { NextAuthProvider } from "@/components/NextAuthProvider";
 
 export const metadata = {
-  title: "V55 App",
-  description: "V55 Application",
+  title: "Habitude",
+  description: "A Habit Tracker App",
 };
 
 export default function RootLayout({ children }) {
