@@ -1,7 +1,7 @@
 "use server";
 import { db } from "@/db/drizzle";
 import { user, habits } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { eq, and } from "drizzle-orm";
 import { redirect } from "next/navigation";
 
 // get all from table user
@@ -70,4 +70,27 @@ export async function getHabits(userId) {
   const data = await db.select().from(habits).where(eq(habits.userId, userId));
 
   return data;
+}
+
+export async function updateHabit(habitId, userId, updatedData) {
+  try {
+    if (!habitId || !userId) {
+      throw new Error("Missing habitId or userId");
+    }
+
+    await db
+      .update(habits)
+      .set({
+        habitName: updatedData.habitName,
+        habitBehavior: updatedData.habitBehavior,
+        habitWhen: updatedData.habitWhen,
+      })
+      .where(and(eq(habits.habitId, habitId), eq(habits.userId, userId)));
+
+    // ✅ Return a plain object
+    return { success: true };
+  } catch (error) {
+    console.error("Error updating habit:", error);
+    throw new Error(`Failed to update habit: ${error.message}`);
+  }
 }
