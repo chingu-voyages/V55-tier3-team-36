@@ -94,3 +94,15 @@ export async function updateHabit(habitId, userId, updatedData) {
     throw new Error(`Failed to update habit: ${error.message}`);
   }
 }
+
+export async function deleteHabit(habitId) {
+  try {
+    await db.delete(habits).where(eq(habits.habitId, habitId));
+    return { success: true }; // ✅ only return plain JSON
+  } catch (error) {
+    console.error("Error deleting habit:", error);
+    throw new Error(`Failed to delete habit: ${error.message}`);
+  }
+}
+
+

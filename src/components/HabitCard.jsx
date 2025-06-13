@@ -1,14 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { MdOutlineEdit, MdCheckCircleOutline, MdOutlineCancel } from "react-icons/md";
-import { updateHabit } from "@/actions/actions";
+import {
+  MdOutlineEdit,
+  MdCheckCircleOutline,
+  MdOutlineCancel,
+  MdDeleteOutline,
+} from "react-icons/md";
+import { updateHabit, deleteHabit } from "@/actions/actions";
 import { useSession } from "next-auth/react";
 
-export default function HabitCard({ habit }) {
+export default function HabitCard({ habit, onDelete }) {
   const { data: session } = useSession();
-
   const [isEditing, setIsEditing] = useState(false);
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+
   const [localHabit, setLocalHabit] = useState({
     habitName: habit.habitName || "",
     habitBehavior: habit.habitBehavior || "",
@@ -24,7 +30,7 @@ export default function HabitCard({ habit }) {
   const handleSave = async () => {
     try {
       await updateHabit(habit.habitId, session.user.id, editedHabit);
-      setLocalHabit(editedHabit); // 👈 update displayed values
+      setLocalHabit(editedHabit);
       setIsEditing(false);
     } catch (error) {
       console.error("Failed to update habit:", error);
@@ -34,6 +40,15 @@ export default function HabitCard({ habit }) {
   const handleCancel = () => {
     setEditedHabit(localHabit);
     setIsEditing(false);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await deleteHabit(habit.habitId);
+      if (onDelete) onDelete(habit.habitId);
+    } catch (error) {
+      console.error("Failed to delete habit:", error);
+    }
   };
 
   return (
@@ -49,6 +64,7 @@ export default function HabitCard({ habit }) {
         ) : (
           <h3 className="font-semibold text-gray-800">{localHabit.habitName}</h3>
         )}
+
         <div className="flex space-x-2">
           {isEditing ? (
             <>
@@ -60,9 +76,14 @@ export default function HabitCard({ habit }) {
               </button>
             </>
           ) : (
-            <button onClick={() => setIsEditing(true)}>
-              <MdOutlineEdit className="text-gray-500 hover:text-gray-700" />
-            </button>
+            <>
+              <button onClick={() => setIsEditing(true)}>
+                <MdOutlineEdit className="text-gray-500 hover:text-gray-700" />
+              </button>
+              <button onClick={() => setShowConfirmDelete(true)}>
+                <MdDeleteOutline className="text-red-500 hover:text-red-700" />
+              </button>
+            </>
           )}
         </div>
       </div>
@@ -101,6 +122,26 @@ export default function HabitCard({ habit }) {
           <li>Last Done: {new Date(habit.lastCompletedDate).toLocaleDateString()}</li>
         )}
       </ul>
+
+      {showConfirmDelete && (
+        <div className="mt-4 text-sm text-gray-700">
+          <p>Are you sure you want to delete this habit?</p>
+          <div className="flex space-x-2 mt-2">
+            <button
+              onClick={handleDelete}
+              className="text-white bg-red-500 px-3 py-1 rounded-md text-sm"
+            >
+              Yes, delete
+            </button>
+            <button
+              onClick={() => setShowConfirmDelete(false)}
+              className="text-sm text-gray-600 hover:underline"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
