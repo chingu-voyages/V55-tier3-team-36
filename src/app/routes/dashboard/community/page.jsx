@@ -4,6 +4,7 @@ import NavBar from "@/components/NavBar";
 import LeaderboardCard from "@/components/LeaderboardCard";
 import { useSession } from "next-auth/react";
 import StreakStats from "@/components/StreakStats";
+import blurred from "../../../../../public/blurred.png";
 
 const dummyData = {
   currentStreak: [
@@ -32,47 +33,49 @@ const dummyData = {
 export default function CommunityPage() {
   const { data: session } = useSession();
   return (
-    <div className="flex min-h-screen bg-blue-50">
-      <main className="flex-1 p-10 bg-gray-50">
-        {/* Header */}
-        {/* <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-semibold text-gray-800">
-            Welcome back, {session?.user?.name || "Jane"}!
-          </h1>
-          <StreakStats />
-        </div> */}
-
-        <div className="grid grid-cols-12 gap-4 items-start">
-          {/* Sidebar Nav */}
-          {/* <div className="col-span-3">
-            <NavBar />
-          </div> */}
-
-          {/* Main Content */}
-          <div className="col-span-9 space-y-6">
-            {/* Leaderboard Section */}
-            <div className="bg-white p-6 rounded-2xl shadow">
-              <h2 className="text-lg font-semibold text-gray-700 mb-6">
-                See how you compare to our community
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <LeaderboardCard
-                  title="Current Streak"
-                  data={dummyData.currentStreak}
-                />
-                <LeaderboardCard
-                  title="Best Streak"
-                  data={dummyData.bestStreak}
-                />
-                <LeaderboardCard
-                  title="Overall Completion"
-                  data={dummyData.completion}
-                />
-              </div>
-            </div>
+    <div className=" h-3/4">
+      <div>
+        <h2 className="text-lg p-8 ">See how you compare to our community</h2>
+      </div>
+      <div className="bg-[url(/blurred.png)]  h-2/3 m-6">
+        <div className="flex w-1/2 h-full justify-self-center">
+          <div className="text-6xl text-blue-900 content-center">
+            Coming Soon
           </div>
         </div>
-      </main>
+      </div>
     </div>
+
+    // <div className="flex min-h-screen bg-blue-50">
+    //   <main className="flex-1 p-10 bg-gray-50">
+
+    //     <div className="grid grid-cols-12 gap-4 items-start">
+
+    //       {/* Main Content */}
+    //       <div className="col-span-9 space-y-6">
+    //         {/* Leaderboard Section */}
+    //         <div className="bg-white p-6 rounded-2xl shadow">
+    //           <h2 className="text-lg font-semibold text-gray-700 mb-6">
+    //             See how you compare to our community
+    //           </h2>
+    //           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    //             <LeaderboardCard
+    //               title="Current Streak"
+    //               data={dummyData.currentStreak}
+    //             />
+    //             <LeaderboardCard
+    //               title="Best Streak"
+    //               data={dummyData.bestStreak}
+    //             />
+    //             <LeaderboardCard
+    //               title="Overall Completion"
+    //               data={dummyData.completion}
+    //             />
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </main>
+    // </div>
   );
 }
