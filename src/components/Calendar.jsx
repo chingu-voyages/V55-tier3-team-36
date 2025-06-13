@@ -16,7 +16,6 @@ export default function Calendar() {
         if (!response.ok) throw new Error("Failed to fetch calendar data");
 
         const { data } = await response.json();
-        console.log("Habit Data Response:", data);
         setHabitData(data);
       } catch (error) {
         console.error("Error fetching calendar data:", error);
@@ -35,10 +34,10 @@ export default function Calendar() {
   ));
 
   const getColor = (count) => {
-    if (count >= 4) return "bg-green-600 text-white";
-    if (count === 3) return "bg-green-500 text-white";
-    if (count === 2) return "bg-green-400 text-white";
-    if (count === 1) return "bg-green-300 text-white";
+    if (count >= 4) return "bg-[#56a2c6 text-white";
+    if (count === 3) return "bg-[#56a2c6] text-white";
+    if (count === 2) return "bg-[#a9d2e4] text-gray-800";
+    if (count === 1) return "bg-[#d3e8f1] text-gray-800";
     return "bg-gray-100 text-gray-800";
   };
 
