@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import NavBar from "@/components/NavBar";
 import HabitCard from "@/components/HabitCard";
@@ -30,10 +30,9 @@ export default function HabitsPage() {
     <div className="flex min-h-screen bg-gray-100">
       <main className="flex-1 p-10">
         <div className="grid grid-cols-12 gap-4 items-start">
-
           {/* Habit cards + Form */}
           <div className="col-span-9 space-y-6 w-full">
-            <div className="bg-white p-6 rounded-lg shadow mb-6">
+            <div className="bg-white p-6 rounded-lg shadow mb-6 max-h-[475px] overflow-y-auto">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-lg font-semibold text-gray-700">
                   Keep track of your routines and habits

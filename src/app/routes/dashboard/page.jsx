@@ -38,7 +38,7 @@ export default function DashboardPage() {
         {/* Middle Column: Overview and Weekly Progress */}
         <div className="col-span-6 space-y-6">
           {/* Overview Section */}
-          <div className="bg-white p-6 rounded-lg shadow min-h-1/2">
+          <div className="bg-white p-6 rounded-lg shadow min-h-1/2 max-h-[120px] overflow-y-auto">
             <h2 className="font-semibold text-gray-700 mb-4">Overview</h2>
             <ul className="space-y-2">
               {habits.map((habit) => (
