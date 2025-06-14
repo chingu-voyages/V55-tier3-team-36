@@ -60,15 +60,21 @@ export default function HabitCard({ habit, onDelete }) {
     <div className="bg-white border rounded-lg shadow px-4 py-3 w-64">
       <div className="flex justify-between items-start mb-2">
         {isEditing ? (
-          <input
-            name="habitName"
-            value={editedHabit.habitName}
-            onChange={handleChange}
-            required
-            className={`text-sm font-semibold border-b w-full ${
-              !editedHabit.habitName.trim() ? "border-red-500" : ""
-            }`}
-          />
+          <>
+            <input
+              name="habitName"
+              value={editedHabit.habitName}
+              onChange={handleChange}
+              required
+              maxLength={100}
+              className={`text-sm font-semibold border-b w-full ${
+                !editedHabit.habitName.trim() ? "border-red-500" : ""
+              }`}
+            />
+            <p className="text-xs text-gray-500 text-right">
+              {editedHabit.habitName.length}/100
+            </p>
+          </>
         ) : (
           <h3 className="font-semibold text-gray-800">
             {localHabit.habitName}
@@ -102,12 +108,18 @@ export default function HabitCard({ habit, onDelete }) {
         <li>
           What:{" "}
           {isEditing ? (
-            <input
-              name="habitBehavior"
-              value={editedHabit.habitBehavior}
-              onChange={handleChange}
-              className="border-b w-full"
-            />
+            <>
+              <input
+                name="habitBehavior"
+                value={editedHabit.habitBehavior}
+                onChange={handleChange}
+                maxLength={200}
+                className="border-b w-full"
+              />
+              <p className="text-xs text-gray-500 text-right">
+                {editedHabit.habitBehavior.length}/200
+              </p>
+            </>
           ) : (
             localHabit.habitBehavior
           )}
@@ -115,12 +127,18 @@ export default function HabitCard({ habit, onDelete }) {
         <li>
           When:{" "}
           {isEditing ? (
-            <input
-              name="habitWhen"
-              value={editedHabit.habitWhen}
-              onChange={handleChange}
-              className="border-b w-full"
-            />
+            <>
+              <input
+                name="habitWhen"
+                value={editedHabit.habitWhen}
+                onChange={handleChange}
+                className="border-b w-full"
+                maxLength={200}
+              />
+              <p className="text-xs text-gray-500 text-right">
+                {editedHabit.habitWhen.length}/200
+              </p>
+            </>
           ) : (
             localHabit.habitWhen
           )}
