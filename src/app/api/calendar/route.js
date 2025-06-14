@@ -1,12 +1,13 @@
+import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/route";
 import { db } from "@/db/drizzle";
 import { dailyStats } from "@/db/schema";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { eq, and, gte, lte } from "drizzle-orm";
-import { NextResponse } from "next/server";
 
 export async function GET(req) {
   const session = await getServerSession(authOptions);
+
   if (!session || !session.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -42,3 +43,4 @@ export async function GET(req) {
 
   return NextResponse.json(formatted);
 }
+
