@@ -35,7 +35,7 @@ export default function Calendar() {
 
   const getColor = (rate) => {
     if (rate >= 100) return "bg-[#56a2c6] text-white";
-    if (rate >= 75) return "bg-[#56e2e6] text-white";
+    if (rate >= 75) return "bg-[#56a2e6] text-white";
     if (rate >= 50) return "bg-[#a9d2e4] text-gray-800";
     if (rate >= 25) return "bg-[#d3e8f1] text-gray-800";
     if (rate > 0) return "bg-[#f3f3d3] text-gray-800";
