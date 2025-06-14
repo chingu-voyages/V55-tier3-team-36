@@ -33,7 +33,7 @@ const dummyData = {
 export default function CommunityPage() {
   const { data: session } = useSession();
   return (
-    <div className=" h-3/4">
+    <div className="bg-[#f4f4f4] h-3/4">
       <div>
         <h2 className="text-lg p-8 ">See how you compare to our community</h2>
       </div>
