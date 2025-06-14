@@ -38,7 +38,7 @@ export default function DashboardPage() {
         {/* Middle Column: Overview and Weekly Progress */}
         <div className="col-span-6 space-y-6">
           {/* Overview Section */}
-          <div className="bg-white p-6 rounded-lg shadow min-h-1/2">
+          <div className="bg-white p-6 rounded-lg shadow min-h-1/2 max-h-[120px] overflow-y-auto">
             <h2 className="font-semibold text-gray-700 mb-4">Overview</h2>
             <ul className="space-y-2">
               {habits.map((habit) => (
@@ -54,16 +54,16 @@ export default function DashboardPage() {
         </div>
 
         {/* Right Column: Calendar and Leaderboard */}
-        <div className="col-span-4 space-y-6">
+        <div className="col-span-5 space-y-6">
           <Calendar />
-          <div className="bg-white p-4 rounded-lg shadow">
+          {/* <div className="bg-white p-4 rounded-lg shadow">
             <h2 className="text-md font-semibold mb-2">Overall Ranking</h2>
             <ol className="text-sm space-y-1">
               <li>🥇 Me — 28</li>
               <li>🥈 John Smith — 24</li>
               <li>🥉 Jane Doe — 20</li>
             </ol>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

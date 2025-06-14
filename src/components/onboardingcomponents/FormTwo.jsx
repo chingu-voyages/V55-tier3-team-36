@@ -58,6 +58,7 @@ export default function FormTwo() {
           aria-describedby="helper-text-explanation"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5  "
           placeholder="Enter a behavior you wish to implement"
+          maxLength={200}
         />
 
         <div className="flex  mt-2 text-sm justify-between">
@@ -84,6 +85,7 @@ export default function FormTwo() {
           aria-describedby="helper-text-explanation"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5  "
           placeholder="Enter a time or scenario"
+          maxLength={200}
         />
 
         <div className="flex  mt-2 text-sm justify-between">

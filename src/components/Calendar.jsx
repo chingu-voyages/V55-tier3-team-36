@@ -34,11 +34,11 @@ export default function Calendar() {
   ));
 
   const getColor = (rate) => {
-    if (rate >= 100) return "bg-green-600 text-white";
-    if (rate >= 75) return "bg-green-500 text-white";
-    if (rate >= 50) return "bg-green-400 text-white";
-    if (rate >= 25) return "bg-green-300 text-white";
-    if (rate > 0) return "bg-green-100 text-gray-800";
+    if (rate >= 100) return "bg-[#56a2c6] text-white";
+    if (rate >= 75) return "bg-[#56a2e6] text-white";
+    if (rate >= 50) return "bg-[#a9d2e4] text-gray-800";
+    if (rate >= 25) return "bg-[#d3e8f1] text-gray-800";
+    if (rate > 0) return "bg-[#f3f3d3] text-gray-800";
     return "bg-gray-100 text-gray-800";
   };
 
@@ -59,7 +59,7 @@ export default function Calendar() {
       >
         {day}
         <div className="absolute bottom-full mb-1 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded shadow z-10">
-          Completion Rate: {rate}%
+          Completion Rate: {Math.round(rate)}%
         </div>
       </div>
     );
@@ -102,4 +102,3 @@ export default function Calendar() {
     </div>
   );
 }
-

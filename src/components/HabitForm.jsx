@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import { updateUserGoal } from "@/actions/actions";
@@ -33,7 +33,10 @@ export default function HabitForm({ onClose, onHabitAdded }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow space-y-4">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white p-6 rounded-lg shadow space-y-4"
+    >
       <div>
         <label className="block text-sm font-medium text-gray-700">Goal</label>
         <input
@@ -42,17 +45,27 @@ export default function HabitForm({ onClose, onHabitAdded }) {
           onChange={(e) => setGoal(e.target.value)}
           className="mt-1 block w-full border border-gray-300 rounded-md p-2"
           required
+          maxLength={100}
         />
+        <p className="text-xs text-gray-500 text-right mt-1">
+          {goal.length}/100
+        </p>
       </div>
       <div>
-        <label className="block text-sm font-medium text-gray-700">Behavior</label>
+        <label className="block text-sm font-medium text-gray-700">
+          Behavior
+        </label>
         <input
           type="text"
           value={behavior}
           onChange={(e) => setBehavior(e.target.value)}
           className="mt-1 block w-full border border-gray-300 rounded-md p-2"
           required
+          maxLength={200}
         />
+        <p className="text-xs text-gray-500 text-right mt-1">
+          {behavior.length}/200
+        </p>
       </div>
       <div>
         <label className="block text-sm font-medium text-gray-700">When</label>
@@ -62,7 +75,11 @@ export default function HabitForm({ onClose, onHabitAdded }) {
           onChange={(e) => setWhen(e.target.value)}
           className="mt-1 block w-full border border-gray-300 rounded-md p-2"
           required
+          maxLength={200}
         />
+        <p className="text-xs text-gray-500 text-right mt-1">
+          {when.length}/200
+        </p>
       </div>
       <div className="flex justify-end gap-2">
         <button
