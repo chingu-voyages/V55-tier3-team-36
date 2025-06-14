@@ -54,7 +54,15 @@ export default function HabitsPage() {
 
               <div className="flex flex-wrap gap-4">
                 {habits.map((habit) => (
-                  <HabitCard key={habit.habitId} habit={habit} />
+                  <HabitCard
+                    key={habit.habitId}
+                    habit={habit}
+                    onDelete={(deletedId) =>
+                      setHabits((prev) =>
+                        prev.filter((h) => h.habitId !== deletedId)
+                      )
+                    }
+                  />
                 ))}
               </div>
             </div>
