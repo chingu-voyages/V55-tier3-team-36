@@ -29,15 +29,15 @@ export default function StreakStats() {
   return (
     <div className="flex space-x-8 text-right text-blue-900 font-medium">
       <div>
-        <p className="text-xl">{currentStreak}</p>
+        <p className="text-3xl">{currentStreak}</p>
         <p className="text-sm text-gray-500">Current Streak</p>
       </div>
       <div>
-        <p className="text-xl">{bestStreak}</p>
+        <p className="text-3xl">{bestStreak}</p>
         <p className="text-sm text-gray-500">Best Streak</p>
       </div>
       <div>
-        <p className="text-xl">{Math.round(completionRate)}%</p>
+        <p className="text-3xl">{Math.round(completionRate)}%</p>
         <p className="text-sm text-gray-500">Completion Rate</p>
       </div>
     </div>

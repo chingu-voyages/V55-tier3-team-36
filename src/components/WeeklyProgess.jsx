@@ -52,7 +52,7 @@ export default function WeeklyProgress() {
             {/* Bar container */}
             <div className="relative flex items-end justify-center h-32 w-6 bg-gray-200 rounded-md">
               <div
-                className="w-full bg-blue-500 rounded-md transition-all duration-300"
+                className="w-full bg-[#a5ddd7] rounded-md transition-all duration-300"
                 style={{ height: `${percent}%` }}
               />
             </div>

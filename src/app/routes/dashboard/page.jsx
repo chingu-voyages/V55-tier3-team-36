@@ -54,16 +54,16 @@ export default function DashboardPage() {
         </div>
 
         {/* Right Column: Calendar and Leaderboard */}
-        <div className="col-span-4 space-y-6">
+        <div className="col-span-5 space-y-6">
           <Calendar />
-          <div className="bg-white p-4 rounded-lg shadow">
+          {/* <div className="bg-white p-4 rounded-lg shadow">
             <h2 className="text-md font-semibold mb-2">Overall Ranking</h2>
             <ol className="text-sm space-y-1">
               <li>🥇 Me — 28</li>
               <li>🥈 John Smith — 24</li>
               <li>🥉 Jane Doe — 20</li>
             </ol>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
