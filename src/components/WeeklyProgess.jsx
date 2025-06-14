@@ -45,7 +45,7 @@ export default function WeeklyProgress() {
             {/* Tooltip */}
             {hoveredIndex === index && (
               <div className="absolute -top-8 mb-2 text-sm bg-gray-800 text-white px-2 py-1 rounded shadow-lg z-50">
-                {percent}%
+                {Math.round(percent)}%
               </div>
             )}
 
