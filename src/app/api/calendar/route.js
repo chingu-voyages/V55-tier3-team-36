@@ -4,52 +4,43 @@ import { authOptions } from "../auth/[...nextauth]/route";
 import { db } from "@/db/drizzle";
 import { dailyStats } from "@/db/schema";
 import { eq, and, gte, lte } from "drizzle-orm";
-import dayjs from "dayjs";
 
-export async function GET(request) {
+export async function GET(req) {
   const session = await getServerSession(authOptions);
 
-  if (!session || !session.user.id) {
+  if (!session || !session.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const userId = session.user.id;
+  const { searchParams } = new URL(req.url);
+  const year = parseInt(searchParams.get("year"));
+  const month = parseInt(searchParams.get("month")); // 0-indexed (Jan = 0)
 
-  const { searchParams } = new URL(request.url);
-  const month = searchParams.get("month");
-  if (!month) {
-    return NextResponse.json(
-      { error: "Month parameter is required" },
-      { status: 400 }
-    );
+  if (isNaN(year) || isNaN(month)) {
+    return NextResponse.json({ error: "Invalid year/month" }, { status: 400 });
   }
 
-  const startDate = dayjs(month + "-01")
-    .startOf("month")
-    .toDate();
-  const endDate = dayjs(month + "-01")
-    .endOf("month")
-    .toDate();
+  const start = new Date(Date.UTC(year, month, 1)).toISOString().split("T")[0];
+  const end = new Date(Date.UTC(year, month + 1, 0)).toISOString().split("T")[0];
 
-  const rows = await db
-    .select({
-      date: dailyStats.date,
-      completedHabits: dailyStats.completedHabits,
-    })
+  const stats = await db
+    .select()
     .from(dailyStats)
     .where(
       and(
         eq(dailyStats.userId, userId),
-        gte(dailyStats.date, startDate),
-        lte(dailyStats.date, endDate)
+        gte(dailyStats.date, start),
+        lte(dailyStats.date, end)
       )
     );
 
-  const result = {};
-  for (let row of rows) {
-    const day = new Date(row.date).getDate();
-    result[day] = row.completedHabits;
+  const formatted = {};
+  for (const s of stats) {
+    const day = new Date(s.date).getUTCDate(); // get day of month
+    formatted[day] = parseFloat(s.completionRate);
   }
 
-  return NextResponse.json({ data: result });
+  return NextResponse.json(formatted);
 }
+

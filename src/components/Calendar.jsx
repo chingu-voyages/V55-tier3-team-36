@@ -8,20 +8,20 @@ export default function Calendar() {
   const [habitData, setHabitData] = useState({});
 
   useEffect(() => {
-    async function fetchCalendarData() {
-      const monthParam = currentDate.format("YYYY-MM");
+    async function fetchHabitData() {
+      const year = currentDate.year();
+      const month = currentDate.month(); // 0-indexed
 
       try {
-        const response = await fetch(`/api/calendar?month=${monthParam}`);
-        if (!response.ok) throw new Error("Failed to fetch calendar data");
-
-        const { data } = await response.json();
+        const res = await fetch(`/api/calendar?year=${year}&month=${month}`);
+        const data = await res.json();
         setHabitData(data);
-      } catch (error) {
-        console.error("Error fetching calendar data:", error);
+      } catch (err) {
+        console.error("Failed to fetch calendar stats", err);
       }
     }
-    fetchCalendarData();
+
+    fetchHabitData();
   }, [currentDate]);
 
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -33,17 +33,18 @@ export default function Calendar() {
     <div key={`blank-${i}`} />
   ));
 
-  const getColor = (count) => {
-    if (count >= 4) return "bg-[#56a2c6 text-white";
-    if (count === 3) return "bg-[#56a2c6] text-white";
-    if (count === 2) return "bg-[#a9d2e4] text-gray-800";
-    if (count === 1) return "bg-[#d3e8f1] text-gray-800";
+  const getColor = (rate) => {
+    if (rate >= 100) return "bg-green-600 text-white";
+    if (rate >= 75) return "bg-green-500 text-white";
+    if (rate >= 50) return "bg-green-400 text-white";
+    if (rate >= 25) return "bg-green-300 text-white";
+    if (rate > 0) return "bg-green-100 text-gray-800";
     return "bg-gray-100 text-gray-800";
   };
 
   const days = Array.from({ length: currentDate.daysInMonth() }, (_, i) => {
     const day = i + 1;
-    const count = habitData[day] || 0;
+    const rate = habitData[day] || 0;
     const isToday =
       currentDate.date() === day &&
       currentDate.isSame(dayjs(), "month") &&
@@ -53,12 +54,12 @@ export default function Calendar() {
       <div
         key={day}
         className={`relative group aspect-square flex items-center justify-center rounded shadow-sm text-sm font-medium ${getColor(
-          count
+          rate
         )} ${isToday ? "border-2 border-indigo-500" : ""}`}
       >
         {day}
         <div className="absolute bottom-full mb-1 hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded shadow z-10">
-          Habits completed: {count}
+          Completion Rate: {rate}%
         </div>
       </div>
     );
@@ -101,3 +102,4 @@ export default function Calendar() {
     </div>
   );
 }
+

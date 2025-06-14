@@ -22,6 +22,7 @@ export default function StreakStats() {
         console.error("Error fetching streak stats:", error);
       }
     }
+
     fetchStats();
   }, []);
 
