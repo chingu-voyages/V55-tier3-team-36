@@ -37,7 +37,7 @@ export default function CommunityPage() {
       <div>
         <h2 className="text-lg p-8 ">See how you compare to our community</h2>
       </div>
-      <div className="bg-[url(/blurred.png)]  h-2/3 m-6">
+      <div className="bg-[url(/blurred.png)] bg-no-repeat  h-2/3 m-6">
         <div className="flex w-1/2 h-full justify-self-center">
           <div className="text-6xl text-blue-900 content-center">
             Coming Soon
