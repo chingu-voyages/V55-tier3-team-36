@@ -37,7 +37,7 @@ export default function StreakStats() {
         <p className="text-sm text-gray-500">Best Streak</p>
       </div>
       <div>
-        <p className="text-xl">{completionRate}%</p>
+        <p className="text-xl">{Math.round(completionRate)}%</p>
         <p className="text-sm text-gray-500">Completion Rate</p>
       </div>
     </div>
