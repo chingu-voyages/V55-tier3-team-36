@@ -28,6 +28,11 @@ export default function HabitCard({ habit, onDelete }) {
   };
 
   const handleSave = async () => {
+    if (!editedHabit.habitName.trim()) {
+      alert("Habit name is required.");
+      return;
+    }
+
     try {
       await updateHabit(habit.habitId, session.user.id, editedHabit);
       setLocalHabit(editedHabit);
@@ -59,10 +64,15 @@ export default function HabitCard({ habit, onDelete }) {
             name="habitName"
             value={editedHabit.habitName}
             onChange={handleChange}
-            className="text-sm font-semibold border-b w-full"
+            required
+            className={`text-sm font-semibold border-b w-full ${
+              !editedHabit.habitName.trim() ? "border-red-500" : ""
+            }`}
           />
         ) : (
-          <h3 className="font-semibold text-gray-800">{localHabit.habitName}</h3>
+          <h3 className="font-semibold text-gray-800">
+            {localHabit.habitName}
+          </h3>
         )}
 
         <div className="flex space-x-2">
@@ -119,7 +129,9 @@ export default function HabitCard({ habit, onDelete }) {
           <li>Start: {new Date(habit.startDate).toLocaleDateString()}</li>
         )}
         {habit.lastCompletedDate && (
-          <li>Last Done: {new Date(habit.lastCompletedDate).toLocaleDateString()}</li>
+          <li>
+            Last Done: {new Date(habit.lastCompletedDate).toLocaleDateString()}
+          </li>
         )}
       </ul>
 
