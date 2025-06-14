@@ -27,7 +27,7 @@ export default function StreakStats() {
   }, []);
 
   return (
-    <div className="flex space-x-8 text-right text-blue-900 font-medium">
+    <div className="flex space-x-8 text-right text-blue-900">
       <div>
         <p className="text-3xl">{currentStreak}</p>
         <p className="text-sm text-gray-500">Current Streak</p>
