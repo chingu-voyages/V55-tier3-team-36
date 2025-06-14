@@ -1,19 +1,34 @@
 "use client";
 
-import { useState } from "react";
-
-const progressData = [
-  { day: "Sun", percent: 100 },
-  { day: "Mon", percent: 50 },
-  { day: "Tue", percent: 65 },
-  { day: "Wed", percent: 30 },
-  { day: "Thu", percent: 25 },
-  { day: "Fri", percent: 90 },
-  { day: "Sat", percent: 60 },
-];
+import { useState, useEffect } from "react";
 
 export default function WeeklyProgress() {
+  const [progressData, setProgressData] = useState([]);
   const [hoveredIndex, setHoveredIndex] = useState(null);
+
+  useEffect(() => {
+    async function fetchWeekStats() {
+      try {
+        const res = await fetch("/api/stats/week");
+        const json = await res.json();
+
+        const rawData = json.data || {};
+
+        const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+        const formatted = days.map((day, idx) => ({
+          day,
+          percent: rawData[idx] ?? 0,
+        }));
+
+        setProgressData(formatted);
+      } catch (err) {
+        console.error("Error fetching weekly progress stats:", err);
+      }
+    }
+
+    fetchWeekStats();
+  }, []);
 
   return (
     <div className="bg-white p-6 rounded-lg shadow w-full">
