@@ -106,7 +106,7 @@ export default function HabitCard({ habit, onDelete }) {
 
       <ul className="text-sm text-gray-600 space-y-1">
         <li>
-          What:{" "}
+          {/* What:{" "} */}
           {isEditing ? (
             <>
               <input
@@ -125,7 +125,7 @@ export default function HabitCard({ habit, onDelete }) {
           )}
         </li>
         <li>
-          When:{" "}
+          {/* When:{" "} */}
           {isEditing ? (
             <>
               <input
