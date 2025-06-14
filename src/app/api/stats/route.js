@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
 import { db } from "@/db/drizzle";
 import { dailyStats } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { eq, and, gte } from "drizzle-orm";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { recalculateAllDailyStats } from "@/actions/actions";
 
-export async function GET(request) {
+export async function GET() {
   const session = await getServerSession(authOptions);
 
   if (!session || !session.user?.id) {
@@ -14,29 +15,43 @@ export async function GET(request) {
 
   const userId = session.user.id;
 
+  // Recalculate all stats first to be sure
+  await recalculateAllDailyStats(userId);
+
+  // Calculate 7 days ago date
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const sevenDaysAgo = new Date(today);
+  sevenDaysAgo.setDate(today.getDate() - 6); // includes today (7 days total)
+
   const stats = await db
     .select()
     .from(dailyStats)
-    .where(eq(dailyStats.userId, userId))
+    .where(
+      and(
+        eq(dailyStats.userId, userId),
+        gte(dailyStats.date, sevenDaysAgo.toISOString().split("T")[0])
+      )
+    )
     .orderBy(dailyStats.date);
 
   if (!stats || stats.length === 0) {
     return NextResponse.json(
-      { currentStreak: 0, bestStreak: 0, completionRate: 0 },
+      { currentStreak: 0, bestStreak: 0, completionRate: "0.00" },
       { status: 200 }
     );
   }
 
+  // --- Streak Calculation ---
   let currentStreak = 0;
   let bestStreak = 0;
   let tempStreak = 0;
-
   let prevDate = null;
 
-  for (let i = stats.length - 1; i > -0; i--) {
+  for (let i = stats.length - 1; i >= 0; i--) {
     const entry = stats[i];
     const date = new Date(entry.date);
-    const isCompleted = entry.completedHabits === entry.totalHabits;
+    const isCompleted = entry.completedHabits > 0;
 
     if (isCompleted) {
       if (
@@ -53,14 +68,17 @@ export async function GET(request) {
       tempStreak = 0;
       if (prevDate === null) currentStreak = 0;
     }
+
     prevDate = date;
   }
 
-  const totalDays = stats.length;
-  const completedDays = stats.filter(
+  // --- Last 7-Day Completion Rate ---
+  const recentCompletedDays = stats.filter(
     (s) => s.completedHabits === s.totalHabits
   ).length;
-  const completionRate = ((completedDays / totalDays) * 100).toFixed(0);
+  const completionRate =
+  stats.reduce((sum, stat) => sum + parseFloat(stat.completionRate), 0) /
+  stats.length;
 
   return NextResponse.json({
     currentStreak,

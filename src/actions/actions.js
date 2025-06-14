@@ -1,6 +1,6 @@
 "use server";
 import { db } from "@/db/drizzle";
-import { user, habits, habitLogs } from "@/db/schema";
+import { user, habits, habitLogs, dailyStats } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
 import { redirect } from "next/navigation";
 
@@ -110,7 +110,7 @@ export async function logHabitCheck(userId, habitId, completed) {
 
   const existing = await db
     .select()
-    .from(habitLogs) // ✅ match your schema name
+    .from(habitLogs)
     .where(
       and(
         eq(habitLogs.userId, userId),
@@ -133,8 +133,18 @@ export async function logHabitCheck(userId, habitId, completed) {
     });
   }
 
-  return { success: true };
+  // Recalculate per-day stats across all habits
+  await updateDailyStats(userId);
+
+  // Optionally update streak for that habit
+  const streakResult = await updateHabitStreak(userId, habitId);
+
+  return {
+    success: true,
+    streak: streakResult.streak,
+  };
 }
+
 
 
 export async function checkHabitLogForToday(userId, habitId) {
@@ -193,3 +203,137 @@ export async function deleteHabitLog(habitId, userId, date) {
   return { success: true };
 }
 
+// Calculate and return the current streak for a habit
+export async function updateHabitStreak(userId, habitId) {
+  if (!userId || !habitId) throw new Error("Missing userId or habitId");
+
+  const logs = await db
+    .select()
+    .from(habitLogs)
+    .where(
+      and(eq(habitLogs.userId, userId), eq(habitLogs.habitId, habitId), eq(habitLogs.completed, true))
+    );
+
+  const dates = logs.map((log) => new Date(log.logDate));
+  const dateSet = new Set(dates.map((d) => d.toISOString().split("T")[0]));
+
+  let streak = 0;
+  let currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0);
+
+  while (dateSet.has(currentDate.toISOString().split("T")[0])) {
+    streak++;
+    currentDate.setDate(currentDate.getDate() - 1);
+  }
+
+  return { success: true, streak };
+}
+
+// Helper to update or insert into dailyStats
+export async function updateDailyStats(userId) {
+  const today = new Date().toISOString().split("T")[0];
+
+  const allHabits = await db.select().from(habits).where(eq(habits.userId, userId));
+  const totalHabits = allHabits.length;
+
+  const logs = await db
+    .select()
+    .from(habitLogs)
+    .where(and(eq(habitLogs.userId, userId), eq(habitLogs.logDate, today)));
+
+  const completedHabits = logs.filter((log) => log.completed).length;
+  const completionRate = totalHabits === 0 ? 0 : ((completedHabits / totalHabits) * 100).toFixed(2);
+
+  // Check if an entry already exists
+  const existing = await db
+    .select()
+    .from(dailyStats)
+    .where(and(eq(dailyStats.userId, userId), eq(dailyStats.date, today)));
+
+  if (existing.length > 0) {
+    await db
+      .update(dailyStats)
+      .set({
+        completedHabits,
+        totalHabits,
+        completionRate,
+      })
+      .where(eq(dailyStats.statId, existing[0].statId));
+  } else {
+    await db.insert(dailyStats).values({
+      userId,
+      date: today,
+      completedHabits,
+      totalHabits,
+      completionRate,
+    });
+  }
+}
+
+export async function recalculateAllDailyStats(userId) {
+  const logs = await db
+    .select()
+    .from(habitLogs)
+    .where(eq(habitLogs.userId, userId));
+
+  if (logs.length === 0) return;
+
+  const logsByDate = {};
+  for (const log of logs) {
+    const logDate =
+      typeof log.logDate === "string"
+        ? new Date(log.logDate)
+        : log.logDate;
+    const dateKey = logDate.toISOString().split("T")[0];
+
+    if (!logsByDate[dateKey]) logsByDate[dateKey] = [];
+    logsByDate[dateKey].push(log);
+  }
+
+  const userHabits = await db
+    .select()
+    .from(habits)
+    .where(eq(habits.userId, userId));
+
+  const totalHabits = userHabits.length;
+  if (totalHabits === 0) return;
+
+  for (const dateKey of Object.keys(logsByDate)) {
+    const completedHabits = logsByDate[dateKey].filter(
+      (log) => log.completed
+    ).length;
+
+    const completionRate = parseFloat(
+      ((completedHabits / totalHabits) * 100).toFixed(2)
+    );
+
+    const existing = await db
+      .select()
+      .from(dailyStats)
+      .where(
+        and(
+          eq(dailyStats.userId, userId),
+          eq(dailyStats.date, dateKey)
+        )
+      );
+
+    if (existing.length > 0) {
+      await db
+        .update(dailyStats)
+        .set({
+          completedHabits,
+          totalHabits,
+          completionRate,
+        })
+        .where(eq(dailyStats.statId, existing[0].statId));
+    } else {
+      await db.insert(dailyStats).values({
+        userId,
+        date: dateKey,
+        completedHabits,
+        totalHabits,
+        completionRate,
+      });
+    }
+  }
+}
