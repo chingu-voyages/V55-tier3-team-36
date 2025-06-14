@@ -150,8 +150,9 @@ export async function logHabitCheck(userId, habitId, completed) {
 export async function checkHabitLogForToday(userId, habitId) {
   if (!userId || !habitId) throw new Error("Missing userId or habitId");
 
+  // Normalize the date to UTC midnight
   const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  today.setUTCHours(0, 0, 0, 0);
   const todayISO = today.toISOString().split("T")[0];
 
   const log = await db
@@ -168,40 +169,68 @@ export async function checkHabitLogForToday(userId, habitId) {
   return log.length > 0 ? log[0] : null;
 }
 
+
 // Add a habit log entry
 export async function addHabitLog(habitId, userId, date) {
   if (!habitId || !userId || !date) {
     throw new Error("Missing parameters for addHabitLog");
   }
 
-  await db.insert(habitLogs).values({
-    userId,
-    habitId,
-    logDate: date,
-    completed: true,
-  });
+  const existing = await db
+    .select()
+    .from(habitLogs)
+    .where(
+      and(
+        eq(habitLogs.userId, userId),
+        eq(habitLogs.habitId, habitId),
+        eq(habitLogs.logDate, date)
+      )
+    );
 
-  return { success: true };
+  if (existing.length > 0) {
+    await db
+      .update(habitLogs)
+      .set({ completed: true })
+      .where(eq(habitLogs.logId, existing[0].logId));
+  } else {
+    await db.insert(habitLogs).values({
+      userId,
+      habitId,
+      logDate: date,
+      completed: true,
+    });
+  }
+
+  await updateDailyStats(userId);
 }
 
 
 
 // Delete a habit log entry
 export async function deleteHabitLog(habitId, userId, date) {
-  if (!habitId || !userId || !date) throw new Error("Missing parameters for deleteHabitLog");
+  if (!habitId || !userId || !date) throw new Error("Missing parameters");
 
-  await db
-    .delete(habitLogs)
+  const existing = await db
+    .select()
+    .from(habitLogs)
     .where(
       and(
-        eq(habitLogs.habitId, habitId),
         eq(habitLogs.userId, userId),
+        eq(habitLogs.habitId, habitId),
         eq(habitLogs.logDate, date)
       )
     );
 
-  return { success: true };
+  if (existing.length > 0) {
+    await db
+      .update(habitLogs)
+      .set({ completed: false })
+      .where(eq(habitLogs.logId, existing[0].logId));
+
+    await updateDailyStats(userId);
+  }
 }
+
 
 // Calculate and return the current streak for a habit
 export async function updateHabitStreak(userId, habitId) {
