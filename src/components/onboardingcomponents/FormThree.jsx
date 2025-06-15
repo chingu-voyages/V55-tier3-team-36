@@ -142,10 +142,10 @@ export default function FormThree({ userId }) {
         return;
       }
 
-      console.log("Sending data to server:", {
-        userId,
-        formData,
-      });
+      // console.log("Sending data to server:", {
+      //   userId,
+      //   formData,
+      // });
 
       const data = await updateUserGoal(userId, formData);
       const onboarded = await updateOnboardingStatus(userId);

@@ -60,7 +60,6 @@ export default function HabitForm({ onClose, onHabitAdded }) {
           value={behavior}
           onChange={(e) => setBehavior(e.target.value)}
           className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-          required
           maxLength={200}
         />
         <p className="text-xs text-gray-500 text-right mt-1">
@@ -74,7 +73,6 @@ export default function HabitForm({ onClose, onHabitAdded }) {
           value={when}
           onChange={(e) => setWhen(e.target.value)}
           className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-          required
           maxLength={200}
         />
         <p className="text-xs text-gray-500 text-right mt-1">
