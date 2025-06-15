@@ -131,7 +131,7 @@ export default function LoginPage() {
   //   );
 
   return (
-    <div className="bg-[url(/landing.png)] h-screen flex bg-bottom bg-no-repeat">
+    <div className="bg-[url(/landing.png)] bg-[#f4f4f4] h-screen flex bg-bottom bg-no-repeat">
       <div className="flex-col  w-1/2 h-full content-center">
         <div className="mt-10   h-1/2  w-1/2 justify-self-center">
           <div className="mt-6 mb-10 content-end h-1/4 text-6xl text-blue-900">

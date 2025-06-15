@@ -4,7 +4,7 @@ import { signOut } from "next-auth/react";
 
 export default function OnboardingLayout({ children }) {
   return (
-    <div>
+    <div className="bg-[#f4f4f4]">
       <div>
         <button
           onClick={() => signOut({ callbackUrl: "/" })}

@@ -57,7 +57,7 @@ export default function HabitCard({ habit, onDelete }) {
   };
 
   return (
-    <div className="bg-white border rounded-lg shadow px-4 py-3 w-64">
+    <div className="bg-white border rounded-lg shadow px-4 py-3 w-64 break-words">
       <div className="flex justify-between items-start mb-2">
         {isEditing ? (
           <>
@@ -76,7 +76,7 @@ export default function HabitCard({ habit, onDelete }) {
             </p>
           </>
         ) : (
-          <h3 className="font-semibold text-gray-800">
+          <h3 className="font-semibold text-gray-800 break-all whitespace-normal">
             {localHabit.habitName}
           </h3>
         )}
@@ -106,7 +106,7 @@ export default function HabitCard({ habit, onDelete }) {
 
       <ul className="text-sm text-gray-600 space-y-1">
         <li>
-          What:{" "}
+          {/* What:{" "} */}
           {isEditing ? (
             <>
               <input
@@ -125,7 +125,7 @@ export default function HabitCard({ habit, onDelete }) {
           )}
         </li>
         <li>
-          When:{" "}
+          {/* When:{" "} */}
           {isEditing ? (
             <>
               <input
